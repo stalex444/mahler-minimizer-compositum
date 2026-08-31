@@ -45,6 +45,15 @@ minimal polynomial of `ρQ` over `ℚ`, and draws the consequences the plastic-t
   polynomial, and there is a SECOND root of that same minimal polynomial with
   modulus `> 1`.  A Pisot number has every other conjugate of modulus `< 1` and
   a Salem number every other of modulus `≤ 1`, so `ρQ` is neither.
+* `ruler_unit` — `ρQ` times an explicit degree-11 integer cofactor equals `1`,
+  over any commutative ring: the ruler product is an algebraic unit.
+* `rulerPoly_nonreciprocal` — the coefficient list of `rulerPoly` is neither its
+  own reversal nor the negation of its reversal.
+* `ruler_degree_multiplicative` — `deg minpoly(ρQ) = deg minpoly(ρ) ·
+  deg minpoly(Q)`, i.e. `12 = 3 · 4`.
+* `ruler_compositum_sup`, `ruler_compositum_finrank`, `ruler_linearDisjoint` —
+  `ℚ(ρ) ⊔ ℚ(Q) = ℚ(ρQ)` of degree 12, and the two simple extensions are
+  linearly disjoint (near-automatic from their coprime degrees — disclosed).
 
 Everything here is elementary algebra of the two defining equations together with
 standard field theory.  No physical claim appears in any statement.
@@ -459,6 +468,125 @@ theorem mem_ruler_rootSet {rho QQ : ℝ} (hr : rho ^ 3 = rho + 1) (hq : QQ ^ 4 =
     rw [ruler_minpoly hr hq]
     exact rulerPoly_ne_zero
 
+/-! ### The ruler product is a unit -/
+
+/-- **The ruler product is an algebraic unit.**  Over any commutative ring with
+`r³ = r + 1` and `q⁴ = q + 1`, the product `r·q` times an explicit degree-11
+integer-coefficient cofactor equals `1`: `rulerPoly` has constant term `−1`, so
+`ρQ` is a unit (its norm is `−1`).  In particular `ρ·Q·(ρQ)⁻¹ = 1` realizes the
+degree triple `(3, 4, 12)` in the normal form `α·β·γ = 1`. -/
+theorem ruler_unit {R : Type*} [CommRing R] (r q : R)
+    (hr : r ^ 3 = r + 1) (hq : q ^ 4 = q + 1) :
+    (r * q) * ((r * q) ^ 11 - 3 * (r * q) ^ 8 - 2 * (r * q) ^ 7 + 2 * (r * q) ^ 5
+      - (r * q) ^ 4 - 3 * (r * q) ^ 3 - (r * q) ^ 2 + 1) = 1 := by
+  linear_combination ruler_root r q hr hq
+
+/-! ### `rulerPoly` is not reciprocal -/
+
+/-- The coefficient of `X⁹` in `rulerPoly` is `−3`. -/
+lemma rulerPoly_coeff_nine : rulerPoly.coeff 9 = -3 := by
+  norm_num [rulerPoly, coeff_X_pow, coeff_X, coeff_one]
+
+/-- The coefficient of `X³` in `rulerPoly` is `−1`. -/
+lemma rulerPoly_coeff_three : rulerPoly.coeff 3 = -1 := by
+  norm_num [rulerPoly, coeff_X_pow, coeff_X, coeff_one]
+
+/-- **`rulerPoly` is not reciprocal.**  Its coefficient list is neither its own
+reversal nor the negation of its reversal: both comparisons already fail at the
+coefficient of `X³`, where the reversal carries `−3` against `−1` (resp. `1`).
+So the minimal polynomial of `ρQ` lies in the nonreciprocal regime. -/
+theorem rulerPoly_nonreciprocal :
+    rulerPoly.reverse ≠ rulerPoly ∧ rulerPoly.reverse ≠ -rulerPoly := by
+  have hrev : rulerPoly.reverse.coeff 3 = -3 := by
+    rw [Polynomial.coeff_reverse, rulerPoly_natDegree,
+      Polynomial.revAt_le (by norm_num : (3:ℕ) ≤ 12)]
+    simpa using rulerPoly_coeff_nine
+  constructor
+  · intro h
+    rw [h, rulerPoly_coeff_three] at hrev
+    norm_num at hrev
+  · intro h
+    rw [h, Polynomial.coeff_neg, rulerPoly_coeff_three] at hrev
+    norm_num at hrev
+
+/-! ### Degree multiplicativity -/
+
+/-- The minimal polynomial of any real root of the PDT cubic is `X³ − X − 1`. -/
+theorem cubic_minpoly {rho : ℝ} (hr : rho ^ 3 = rho + 1) :
+    minpoly ℚ rho = X ^ 3 - X - 1 := by
+  refine (minpoly.eq_of_irreducible_of_monic PDT.cubicQ_irreducible ?_ (by monicity!)).symm
+  simp only [map_sub, map_pow, aeval_X, map_one]
+  linear_combination hr
+
+/-- The minimal polynomial of any real root of the PDT quartic is `X⁴ − X − 1`. -/
+theorem quartic_minpoly {QQ : ℝ} (hq : QQ ^ 4 = QQ + 1) :
+    minpoly ℚ QQ = X ^ 4 - X - 1 := by
+  refine (minpoly.eq_of_irreducible_of_monic PDT.quarticQ_irreducible ?_ (by monicity!)).symm
+  simp only [map_sub, map_pow, aeval_X, map_one]
+  linear_combination hq
+
+/-- `ℚ(ρ)` has degree 3 over `ℚ`. -/
+theorem cubic_finrank {rho : ℝ} (hr : rho ^ 3 = rho + 1) :
+    Module.finrank ℚ ℚ⟮rho⟯ = 3 := by
+  have hInt : IsIntegral ℚ rho := by
+    refine ⟨X ^ 3 - X - 1, by monicity!, ?_⟩
+    simp only [eval₂_sub, eval₂_pow, eval₂_X, eval₂_one]
+    linear_combination hr
+  rw [IntermediateField.adjoin.finrank hInt, cubic_minpoly hr]
+  compute_degree!
+
+/-- `ℚ(Q)` has degree 4 over `ℚ`. -/
+theorem quartic_finrank {QQ : ℝ} (hq : QQ ^ 4 = QQ + 1) :
+    Module.finrank ℚ ℚ⟮QQ⟯ = 4 := by
+  have hInt : IsIntegral ℚ QQ := by
+    refine ⟨X ^ 4 - X - 1, by monicity!, ?_⟩
+    simp only [eval₂_sub, eval₂_pow, eval₂_X, eval₂_one]
+    linear_combination hq
+  rw [IntermediateField.adjoin.finrank hInt, quartic_minpoly hq]
+  compute_degree!
+
+/-- **Degree multiplicativity at the ruler product.**  The degree of the minimal
+polynomial of `ρQ` is the PRODUCT of the degrees of the minimal polynomials of
+`ρ` and `Q` — `12 = 3 · 4`.  Unlike the coprime-degree SUM case, no general
+theorem forces this for products (`ζ₃·∛2` has degree 3, not 6), so the equality
+is content certified here by the elimination, not bookkeeping. -/
+theorem ruler_degree_multiplicative {rho QQ : ℝ} (hr : rho ^ 3 = rho + 1)
+    (hq : QQ ^ 4 = QQ + 1) :
+    (minpoly ℚ (rho * QQ)).natDegree
+      = (minpoly ℚ rho).natDegree * (minpoly ℚ QQ).natDegree := by
+  have h3 : (X ^ 3 - X - 1 : ℚ[X]).natDegree = 3 := by compute_degree!
+  have h4 : (X ^ 4 - X - 1 : ℚ[X]).natDegree = 4 := by compute_degree!
+  rw [ruler_minpoly hr hq, rulerPoly_natDegree, cubic_minpoly hr, quartic_minpoly hq, h3, h4]
+
+/-! ### The compositum in sup form, and linear disjointness -/
+
+/-- **The compositum, in sup form.**  `ℚ(ρ) ⊔ ℚ(Q) = ℚ(ρQ)`: the ruler product
+is a primitive element of the compositum of the two simple extensions.  This is
+`ruler_adjoin_eq` repackaged into the lattice vocabulary. -/
+theorem ruler_compositum_sup {rho QQ : ℝ} (hr : rho ^ 3 = rho + 1)
+    (hq : QQ ^ 4 = QQ + 1) :
+    ℚ⟮rho⟯ ⊔ ℚ⟮QQ⟯ = ℚ⟮rho * QQ⟯ := by
+  rw [ruler_adjoin_eq hr hq, ← IntermediateField.adjoin_union, Set.singleton_union]
+
+/-- **The compositum has degree 12 over `ℚ`**, in sup form. -/
+theorem ruler_compositum_finrank {rho QQ : ℝ} (hr : rho ^ 3 = rho + 1)
+    (hq : QQ ^ 4 = QQ + 1) :
+    Module.finrank ℚ ↥(ℚ⟮rho⟯ ⊔ ℚ⟮QQ⟯) = 12 := by
+  rw [ruler_compositum_sup hr hq, ruler_adjoin_eq hr hq]
+  exact ruler_finrank hr hq
+
+/-- **`ℚ(ρ)` and `ℚ(Q)` are linearly disjoint over `ℚ`.**  DISCLOSURE: given the
+kernel-held degrees 3 and 4, this is near-automatic from Mathlib's
+`IntermediateField.LinearDisjoint.of_finrank_coprime` — coprime finite degrees
+force linear disjointness.  No new general theorem is claimed here; the
+substantive content is the sup-equality `ruler_compositum_sup` above. -/
+theorem ruler_linearDisjoint {rho QQ : ℝ} (hr : rho ^ 3 = rho + 1)
+    (hq : QQ ^ 4 = QQ + 1) :
+    ℚ⟮rho⟯.LinearDisjoint ℚ⟮QQ⟯ := by
+  apply IntermediateField.LinearDisjoint.of_finrank_coprime
+  rw [cubic_finrank hr, quartic_finrank hq]
+  decide
+
 end RulerMinpoly
 end PDT
 
@@ -489,3 +617,15 @@ end PDT
 #print axioms PDT.RulerMinpoly.conjugates_eq_embedding_products
 #print axioms PDT.RulerMinpoly.ruler_conjugates_card
 #print axioms PDT.RulerMinpoly.mem_ruler_rootSet
+#print axioms PDT.RulerMinpoly.ruler_unit
+#print axioms PDT.RulerMinpoly.rulerPoly_coeff_nine
+#print axioms PDT.RulerMinpoly.rulerPoly_coeff_three
+#print axioms PDT.RulerMinpoly.rulerPoly_nonreciprocal
+#print axioms PDT.RulerMinpoly.cubic_minpoly
+#print axioms PDT.RulerMinpoly.quartic_minpoly
+#print axioms PDT.RulerMinpoly.cubic_finrank
+#print axioms PDT.RulerMinpoly.quartic_finrank
+#print axioms PDT.RulerMinpoly.ruler_degree_multiplicative
+#print axioms PDT.RulerMinpoly.ruler_compositum_sup
+#print axioms PDT.RulerMinpoly.ruler_compositum_finrank
+#print axioms PDT.RulerMinpoly.ruler_linearDisjoint
