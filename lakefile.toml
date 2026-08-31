@@ -1,5 +1,5 @@
 name = "plastic-number-threshold"
-defaultTargets = ["PdtIrreducible", "PdtSalemFamily", "PdtRulerMinpoly", "PdtRulerCensus", "Challenge", "Solution"]
+defaultTargets = ["PdtIrreducible", "PdtSalemFamily", "PdtRulerMinpoly", "PdtRulerCensus", "PdtRulerMeasure", "Challenge", "Solution"]
 
 [[require]]
 name = "mathlib"
@@ -17,6 +17,9 @@ name = "PdtRulerMinpoly"
 
 [[lean_lib]]
 name = "PdtRulerCensus"
+
+[[lean_lib]]
+name = "PdtRulerMeasure"
 
 [[lean_lib]]
 name = "Challenge"
