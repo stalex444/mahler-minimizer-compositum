@@ -1,0 +1,316 @@
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+version: "v0.4"
+# Review status: self-assessed by the author, with an in-house
+# adversarial mock-referee pass applied to this surface before
+# submission (see the review block below).
+
+project:
+  name: "The plastic number as a spectral threshold: the Bedford-Kim family, its limit, and Lehmer's polynomial as its first member"
+  description: >-
+    Kernel-checked spectral results for the Bedford-Kim family
+    chi_n(x) = x^(n+1)(x^3 - x - 1) + (x^3 + x^2 - 1) — the
+    characteristic polynomials of the linear-fractional-recurrence
+    rational surface automorphisms, built from the plastic polynomial
+    and its (monic) reciprocal. Compared: (1) for n >= 7 the family has a
+    canonical root in [117/100, rho), the largest root below rho, the
+    sequence is strictly increasing, and it tends to rho — the real
+    root of x^3 = x + 1, the plastic number, smallest Pisot number and
+    the threshold constant of the Blanc-Cantat classification of
+    birational surface dynamical degrees; (2) every chi_n is strictly
+    positive on [rho, infinity); (3) the exact factorization
+    chi_7 = (x - 1) * L with L Lehmer's degree-10 polynomial, over any
+    commutative ring — Lehmer's number, whose logarithm is the proven
+    minimum positive entropy of a surface automorphism (McMullen), is
+    the n = 7 member of the plastic family; (4) L has a root in
+    [117/100, rho); (5) an exclusion witness: a nonreal root z of
+    x^4 = x + 1 with 1 < |rho * z| < rho * Q; (6) the twelve embedding
+    products ARE the conjugates of rho * Q, and (7) there are exactly
+    twelve of them — so (5) exhibits a second conjugate strictly
+    outside the unit circle, and rho * Q is therefore neither a Pisot
+    nor a Salem number. Whether
+    rho is ATTAINED as a dynamical degree is open in the literature;
+    no statement here claims it, and no "first formalization" claim is
+    made. Hypotheses are inline — rho and Q enter only through their
+    defining equations, plus the root-selection inequality 1 < Q on
+    the exclusion witness (5), which the quartic's negative real root
+    genuinely fails — and the compared statements use only core
+    Mathlib vocabulary (Filter.Tendsto, nhds, the complex norm, and
+    polynomial root multisets for (6)-(7)) — zero custom definitions.
+    The name prefix "ruler" in three statement names is the source
+    project's term for the product rho * Q; nothing in any statement
+    depends on it.
+  authors:
+    - "Stephanie Alexander"
+  license: "MIT"
+  responsible_maintainers:
+    - "Stephanie Alexander"
+
+classification:
+  arxiv: ["math.DS", "math.NT"]
+  msc2020: ["11R06", "14E07", "37B40"]
+
+sources:
+  - title: "Dynamics of rational surface automorphisms: linear fractional recurrences"
+    authors:
+      - "Eric Bedford"
+      - "Kyounghee Kim"
+    id: "Journal of Geometric Analysis 19 (2009), 553-583"
+    # Crossref-verified 2026-08-25 (mock referee): JGA 19, issue 3,
+    # 553-583, DOI below; the arXiv abs page carries no journal-ref
+    # field, so Crossref is the authority here. arXiv: math/0611297.
+    type: "article"
+    location: "https://doi.org/10.1007/s12220-009-9077-8"
+    relationship: "formalizes"
+    note: >-
+      The paper constructs, for n >= 7 and suitable parameters,
+      rational surface automorphisms whose action on cohomology has
+      characteristic polynomial chi_n(x) = x^(n+4) - x^(n+2) - x^(n+1)
+      + x^3 + x^2 - 1 (their eq. 0.3; equivalently x^(n+1)(x^3 - x - 1)
+      + (x^3 + x^2 - 1)), with positive entropy log lambda_n, lambda_n
+      a Salem number, and proves the lambda_n increase to the real root
+      of t^3 = t + 1 (verbatim: "the lambda_n increase to delta-star
+      as n -> infinity", delta-star that root — the plastic number). This
+      entry formalizes the SPECTRAL half: the canonical largest roots
+      below rho, their strict increase, and the convergence to rho. The
+      dynamical realization (that lambda_n is the entropy/spectral
+      radius of an automorphism), the Salem property of the roots, and
+      the absence of roots in (1, 117/100) are NOT formalized — they
+      are the paper's geometric content, cited here.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Dynamical degrees of birational transformations of projective surfaces"
+    authors:
+      - "Jeremy Blanc"
+      - "Serge Cantat"
+    id: "Journal of the American Mathematical Society 29 (2016), 415-471"
+    # Crossref-verified 2026-08-31, first-hand: DOI 10.1090/jams831 (no
+    # slash) resolves and matches JAMS 29 (2016) 415-471; arXiv
+    # 1307.0361 (ar5iv full text verified, two passes).
+    type: "article"
+    location: "https://doi.org/10.1090/jams831"
+    relationship: "background"
+    note: >-
+      The classification the compared statements sit in: dynamical
+      degrees of birational surface transformations are Pisot or Salem
+      numbers (their Thm 1.2, credited to Diller-Favre); the plastic
+      number is named there as the infimum of the Pisot class and the
+      automorphism threshold (Sec 1.1.2, Cor 2.7). Not formalized here;
+      via this theorem (cited), the compared exclusion witness implies
+      rho * Q is not the dynamical degree of any birational surface
+      transformation.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Factorization of certain cyclotomic functions"
+    authors:
+      - "Derrick H. Lehmer"
+    id: "Annals of Mathematics 34 (1933), 461-479"
+    type: "article"
+    location: "https://doi.org/10.2307/1968172"
+    # Crossref-verified 2026-08-25 (mock referee): DOI confirmed,
+    # Annals of Mathematics 34(3), 1933, first page 461.
+    relationship: "background"
+    note: >-
+      The source of Lehmer's degree-10 polynomial, whose largest root
+      (Lehmer's number, approximately 1.17628) is the smallest known
+      Salem number, and whose logarithm is the proven minimum positive
+      entropy of a surface automorphism (McMullen, Publ. Math. IHES 105
+      (2007), Thm 1.2; equivalently Lehmer's number is the minimum
+      dynamical degree above 1 in characteristic zero, Blanc-Cantat Cor
+      2.7(3)). The compared factorization chi_7 = (x - 1) * L places
+      Lehmer's polynomial exactly at the n = 7 member of the plastic
+      family; the compared root statement locates a root of L in
+      [117/100, rho). Lehmer's minimality theorems are not formalized
+      here.
+    license: "unknown"
+    author_endorsement: "n/a"
+
+  - title: "Dynamics on blowups of the projective plane"
+    authors:
+      - "Curtis T. McMullen"
+    id: "Publications Mathematiques de l'IHES 105 (2007), 49-89"
+    type: "article"
+    location: "https://doi.org/10.1007/s10240-007-0004-x"
+    # Crossref-verified 2026-08-31: Publ. Math. IHES 105 (2007);
+    # numdam open-access copy: numdam.org/item/PMIHES_2007__105__49_0/
+    relationship: "background"
+    note: >-
+      Cited for the minimum-entropy status of Lehmer's number: Thm 1.2
+      (any positive-entropy automorphism of a compact complex surface
+      has h(F) >= log lambda_Lehmer) and Cor 1.3 (attained by his
+      F_10) — verified from the paper text 2026-08-25 (mock referee).
+      Not formalized here. Additionally, McMullen's eq (2.4) gives the
+      characteristic-polynomial family of the Coxeter elements of W_n
+      as P_n(t) = [t^(n-2)(t^3 - t - 1) + (t^3 + t^2 - 1)]/(t - 1) —
+      this entry's chi family divided by (t - 1) — with the remark that
+      Q_10 coincides with Lehmer's polynomial: the compared
+      factorization chi_7 = (x - 1) * L is the kernel certificate of
+      that remark.
+    license: "unknown"
+    author_endorsement: "n/a"
+
+related_formalizations:
+  - id: "https://github.com/leanprover-community/mathlib4 (intermediate value theorem, sSup/compactness, monotone convergence, Filter.Tendsto, complex norm)"
+    relationship: "builds-on"
+    note: >-
+      The compared statements use only core Mathlib vocabulary — zero
+      custom definitions on the compared surface. Mathlib contains no
+      Salem numbers, no Lehmer polynomial, and no Pisot theory (checked
+      at the pin, 2026-08-25): the family, its canonical root sequence,
+      and the exclusion argument are this entry's contribution.
+
+  - id: "https://github.com/stalex444/pdt-lean (parent development; pinned: commit d66ffbe813e48636aa636ffcd80070b81cbf10da)"
+    relationship: "other"
+    note: >-
+      The broader public project this entry belongs to. This repository
+      is the complete, self-contained proof development for the
+      compared statements, not a wrapper: the three proof modules
+      (PdtIrreducible, PdtSalemFamily, PdtRulerMinpoly), the compared
+      surface, and the pinned toolchain build here with no imports from
+      the parent.
+
+status:
+  scope: >-
+    Formalized, 7 compared theorems, hypotheses inline. (1)
+    plastic_salem_family: existence of the canonical root sequence of
+    chi_n in [117/100, rho) for n >= 7 — largest below rho, strictly
+    increasing, tending to rho. (2) family_pos_of_rho_le: chi_n > 0 on
+    [rho, infinity). (3) lehmer_first_rung: chi_7 = (x - 1) * L over
+    any commutative ring. (4) lehmer_root_below_plastic: L has a root
+    in [117/100, rho). (5) ruler_second_conjugate: a nonreal z with
+    z^4 = z + 1 and 1 < |rho * z| < rho * Q. (6)
+    ruler_conjugates_eq_embedding_products: a complex number is a root
+    of minpoly(rho * Q) iff it is a product of a cubic root with a
+    quartic root — both directions. (7) ruler_conjugates_card: that
+    root set has exactly twelve elements. NOT formalized (cited):
+    the dynamical realization of the roots as automorphism entropies;
+    the Salem property; the emptiness of (1, 117/100); the
+    Blanc-Cantat classification. No physical claim is part of the
+    compared statements.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: ["propext", "Classical.choice", "Quot.sound"]
+
+automation:
+  methods:
+    - method: "agent"
+      models: ["Anthropic Claude (Opus/Fable-class, 2026)"]
+      framework: "Claude Code"
+      tool_setup: >-
+        AI-assisted proof drafting and error-loop iteration against
+        lake build; every compared declaration kernel-checked and
+        axiom-audited (#print axioms: propext, Classical.choice,
+        Quot.sound; the factorization needs propext and Quot.sound
+        only). The proof skeleton was numerically pre-verified (sympy,
+        exact rational arithmetic where stated) before formalization.
+      cost:
+        wall_time: "one session, 2026-08-25 (kernel closure); the ruler-conjugates statements (6)-(7) added 2026-08-29"
+        spend_usd: "subscription-based"
+        hardware: "remote development container"
+      prompting_notes: >-
+        Statements fixed from the source paper first; proofs iterated
+        against the compiler gate by gate (recurrence and endpoint
+        identities, sSup root canonicity, the monotone step, the
+        power-blowup limit, the Vieta factorization witness).
+    - method: "manual"
+      models: []
+      framework: "n/a"
+      tool_setup: >-
+        Author-directed target selection, statement design, and
+        acceptance; statements audited by the author against the source
+        paper's spectral statement.
+      cost:
+        wall_time: "included in the session above"
+        spend_usd: "not tracked"
+        hardware: "local machine"
+      prompting_notes: "n/a"
+  spend_usd: "subscription-based"
+  notes: >-
+    Human-directed, machine-verified workflow: the author fixes targets
+    and reviews statements; AI assistance drafts and repairs proofs;
+    the Lean kernel is the acceptance criterion.
+
+fidelity:
+  divergences: >-
+    Bedford-Kim's theorem is geometric: for n >= 7 and suitable
+    parameters the maps are automorphisms of rational surfaces with
+    entropy log lambda_n, lambda_n a Salem number, and the lambda_n
+    increase to the plastic number. This entry formalizes the spectral
+    statement about the polynomial family only: the canonical largest
+    roots below rho, their strict increase, and the limit. The
+    dynamical realization, the Salem property of the roots, and the
+    absence of further roots in (1, 117/100) are cited, not formalized
+    — so "the canonical root below rho" here corresponds to the paper's
+    spectral radius via the cited factorization. The exclusion
+    corollary for rho * Q (not a birational surface dynamical degree)
+    additionally requires the cited Blanc-Cantat classification; the
+    identification of the products of embeddings as the conjugates of
+    rho * Q is NOT cited but formalized here, as statements (6) and
+    (7).
+    All finite margin claims are exact: the brackets are rational and
+    kernel-decided; no floating point enters any compared statement or
+    proof.
+
+review:
+  status: "self-assessed"
+  reviewers:
+    - "Stephanie Alexander"
+  notes: >-
+    Statements audited by the author against the source paper's
+    spectral statement; the kernel and the axiom audit are the
+    acceptance criteria. An in-house adversarial mock-referee pass, automated (AI-assisted: Anthropic Claude, in Claude Code, under the author's direction; 2026-08-25) was applied to this surface before submission.
+
+alignment:
+  namespace: "PlasticThreshold"
+  statements:
+    - source: "Bedford-Kim 2009 (the spectral statement, eq. 0.3 + Thm; verbatim 'the lambda_n increase to delta-star')"
+      lean: "PlasticThreshold.plastic_salem_family"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        Canonical largest roots of chi_n below rho for n >= 7, strictly
+        increasing, tending to rho.
+    - source: "Bedford-Kim 2009 (spectral, complement)"
+      lean: "PlasticThreshold.family_pos_of_rho_le"
+      module: "Solution"
+      status: "proved"
+      note: "chi_n strictly positive on [rho, infinity) — nothing at or above the limit."
+    - source: "Lehmer 1933 (the polynomial) / Bedford-Kim 2009 (the family at n = 7)"
+      lean: "PlasticThreshold.lehmer_first_rung"
+      module: "Solution"
+      status: "proved"
+      note: "chi_7 = (x - 1) * L exactly, over any commutative ring."
+    - source: "corollary of plastic_salem_family at n = 7 and the factorization lehmer_first_rung"
+      lean: "PlasticThreshold.lehmer_root_below_plastic"
+      module: "Solution"
+      status: "proved"
+      note: "Lehmer's polynomial has a root in [117/100, rho)."
+    - source: "this work (exclusion witness; meaning via Blanc-Cantat 2016, cited)"
+      lean: "PlasticThreshold.ruler_second_conjugate"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        A nonreal quartic root z with 1 < |rho * z| < rho * Q — given
+        statements (6) and (7), which formalize the identification of
+        the embedding products as the conjugates of rho * Q, a second
+        conjugate outside the unit circle, so rho * Q is neither Pisot
+        nor Salem.
+    - source: "this work (the identification the exclusion corollary rests on)"
+      lean: "PlasticThreshold.ruler_conjugates_eq_embedding_products"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        A complex number is a root of minpoly(rho * Q) if and only if it
+        is a product w * z of a root of x^3 = x + 1 with a root of
+        x^4 = x + 1. Proved in both directions.
+    - source: "this work (companion to the above)"
+      lean: "PlasticThreshold.ruler_conjugates_card"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        The root set of minpoly(rho * Q) over the complex numbers has
+        exactly twelve elements.
+
+acknowledgements: >-
+  Built on Mathlib and the Lean 4 toolchain — in particular the
+  intermediate value theorem, order-compactness, and monotone
+  convergence machinery; thanks to the leanprover community. Developed with AI assistance (Anthropic Claude, in Claude Code) under the author's direction.

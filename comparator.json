@@ -1,0 +1,18 @@
+{
+  "challenge_module": "Challenge",
+  "solution_module": "Solution",
+  "theorem_names": [
+    "PlasticThreshold.plastic_salem_family",
+    "PlasticThreshold.family_pos_of_rho_le",
+    "PlasticThreshold.lehmer_first_rung",
+    "PlasticThreshold.lehmer_root_below_plastic",
+    "PlasticThreshold.ruler_second_conjugate",
+    "PlasticThreshold.ruler_conjugates_eq_embedding_products",
+    "PlasticThreshold.ruler_conjugates_card"
+  ],
+  "permitted_axioms": [
+    "propext",
+    "Quot.sound",
+    "Classical.choice"
+  ]
+}

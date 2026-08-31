@@ -1,0 +1,23 @@
+name = "plastic-number-threshold"
+defaultTargets = ["PdtIrreducible", "PdtSalemFamily", "PdtRulerMinpoly", "Challenge", "Solution"]
+
+[[require]]
+name = "mathlib"
+scope = "leanprover-community"
+rev = "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f"
+
+[[lean_lib]]
+name = "PdtIrreducible"
+
+[[lean_lib]]
+name = "PdtSalemFamily"
+
+[[lean_lib]]
+name = "PdtRulerMinpoly"
+
+[[lean_lib]]
+name = "Challenge"
+
+[[lean_lib]]
+name = "Solution"
+
