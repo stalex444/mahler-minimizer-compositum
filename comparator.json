@@ -8,7 +8,17 @@
     "PlasticThreshold.lehmer_root_below_plastic",
     "PlasticThreshold.ruler_second_conjugate",
     "PlasticThreshold.ruler_conjugates_eq_embedding_products",
-    "PlasticThreshold.ruler_conjugates_card"
+    "PlasticThreshold.ruler_conjugates_card",
+    "PlasticThreshold.ruler_unit",
+    "PlasticThreshold.rulerPoly_nonreciprocal",
+    "PlasticThreshold.ruler_degree_multiplicative",
+    "PlasticThreshold.ruler_linearDisjoint",
+    "PlasticThreshold.ruler_conjugate_census",
+    "PlasticThreshold.ruler_house",
+    "PlasticThreshold.ruler_mahler_measure",
+    "PlasticThreshold.ruler_mahler_eq_quartic_measure",
+    "PlasticThreshold.product_recurrence_charpoly",
+    "PlasticThreshold.product_annihilator_iff"
   ],
   "permitted_axioms": [
     "propext",

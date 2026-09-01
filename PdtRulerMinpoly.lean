@@ -5,14 +5,14 @@ import PdtSalemFamily
 /-!
 # PdtRulerMinpoly — the minimal polynomial of the ruler product `ρQ`
 
-Let `ρ` be the real root of the PDT cubic `x³ = x + 1`, `Q` the real root of the
+Let `ρ` be the real root of the cubic `x³ = x + 1`, `Q` the real root of the
 PDT quartic `x⁴ = x + 1`, and `t = ρ·Q` the ruler product.  This module proves,
 in the kernel, that the explicit degree-12 monic
 
   `rulerPoly = X¹² − 3X⁹ − 2X⁸ + 2X⁶ − X⁵ − 3X⁴ − X³ + X − 1`
 
 (the resultant eliminating `y` from `y³ − y − 1` and `x⁴ − x·y³ − y⁴`) IS the
-minimal polynomial of `ρQ` over `ℚ`, and draws the consequences the plastic-threshold entry needs.
+minimal polynomial of `ρQ` over `ℚ`, and draws the consequences this entry needs.
 
 ## Main results
 
@@ -286,9 +286,9 @@ theorem ruler_finrank {rho QQ : ℝ} (hr : rho ^ 3 = rho + 1) (hq : QQ ^ 4 = QQ 
 /-! ### The conjugates -/
 
 /-- **Every product of embeddings is a conjugate of `ρQ`.**  For every root `w`
-of the PDT cubic and every root `z` of the PDT quartic in `ℂ`, the product `w·z`
+of the cubic and every root `z` of the quartic in `ℂ`, the product `w·z`
 is a root of the minimal polynomial of `ρQ` over `ℚ`.  This is the step the
-plastic-threshold entry cites; it is now kernel-held. -/
+entry cites; it is now kernel-held. -/
 theorem embedding_product_is_conjugate {rho QQ : ℝ} (hr : rho ^ 3 = rho + 1)
     (hq : QQ ^ 4 = QQ + 1) (w z : ℂ) (hw : w ^ 3 = w + 1) (hz : z ^ 4 = z + 1) :
     aeval (w * z) (minpoly ℚ (rho * QQ)) = 0 := by
@@ -375,7 +375,7 @@ theorem exists_cubic_root_mem : ∃ x : ℝ, x ^ 3 = x + 1 ∧ 5 / 4 ≤ x ∧ x
       norm_num)
   exact ⟨x, by simp only at hx; linarith, hxm.1, hxm.2⟩
 
-/-- A complete root system of the PDT cubic exists over `ℂ`, in the triangular
+/-- A complete root system of the cubic exists over `ℂ`, in the triangular
 form `ruler_factorization` needs: the real root together with a root of the
 quadratic cofactor. -/
 theorem exists_cubic_pair : ∃ w1 w2 : ℂ, w1 ^ 3 = w1 + 1 ∧ w2 ^ 2 + w1 * w2 + w1 ^ 2 = 1 := by
@@ -403,7 +403,7 @@ private lemma factor_to_pair {w zeta : ℂ} (hw : w ^ 3 = w + 1)
 
 /-- **Every root of `rulerPoly` is a product of embeddings.**  The converse of
 `ruler_root`: if `ζ` is a complex root of `rulerPoly` then `ζ = w·z` for some
-root `w` of the PDT cubic and some root `z` of the PDT quartic. -/
+root `w` of the cubic and some root `z` of the quartic. -/
 theorem root_is_embedding_product (zeta : ℂ)
     (hz : zeta ^ 12 - 3 * zeta ^ 9 - 2 * zeta ^ 8 + 2 * zeta ^ 6 - zeta ^ 5
       - 3 * zeta ^ 4 - zeta ^ 3 + zeta - 1 = 0) :
@@ -428,8 +428,8 @@ theorem aeval_rulerPoly_eq {A : Type*} [CommRing A] [Algebra ℚ A] (a : A) :
 
 /-- **The conjugates of `ρQ` are EXACTLY the products of embeddings.**  A complex
 number is a root of `minpoly ℚ (ρQ)` if and only if it is a product `w·z` of a
-root `w` of the PDT cubic with a root `z` of the PDT quartic.  This is the
-identification the plastic-threshold entry cited without formalizing, in both
+root `w` of the cubic with a root `z` of the quartic.  This is the
+identification this entry cited without formalizing, in both
 directions. -/
 theorem conjugates_eq_embedding_products {rho QQ : ℝ} (hr : rho ^ 3 = rho + 1)
     (hq : QQ ^ 4 = QQ + 1) (zeta : ℂ) :
@@ -454,8 +454,8 @@ theorem ruler_conjugates_card : Fintype.card (rulerPoly.rootSet ℂ) = 12 := by
 /-- **The twelve conjugates of `ρQ` ARE the products of embeddings.**  Combined
 with `ruler_conjugates_card` this is the full cited identification: the root set
 of `minpoly ℚ (ρQ)` in `ℂ` has exactly twelve elements, and a complex number
-belongs to it precisely when it is a product `w·z` of a root of the PDT cubic
-with a root of the PDT quartic. -/
+belongs to it precisely when it is a product `w·z` of a root of the cubic
+with a root of the quartic. -/
 theorem mem_ruler_rootSet {rho QQ : ℝ} (hr : rho ^ 3 = rho + 1) (hq : QQ ^ 4 = QQ + 1)
     (zeta : ℂ) :
     zeta ∈ rulerPoly.rootSet ℂ ↔ ∃ w z : ℂ, w ^ 3 = w + 1 ∧ z ^ 4 = z + 1 ∧ zeta = w * z := by
@@ -511,14 +511,14 @@ theorem rulerPoly_nonreciprocal :
 
 /-! ### Degree multiplicativity -/
 
-/-- The minimal polynomial of any real root of the PDT cubic is `X³ − X − 1`. -/
+/-- The minimal polynomial of any real root of the cubic is `X³ − X − 1`. -/
 theorem cubic_minpoly {rho : ℝ} (hr : rho ^ 3 = rho + 1) :
     minpoly ℚ rho = X ^ 3 - X - 1 := by
   refine (minpoly.eq_of_irreducible_of_monic PDT.cubicQ_irreducible ?_ (by monicity!)).symm
   simp only [map_sub, map_pow, aeval_X, map_one]
   linear_combination hr
 
-/-- The minimal polynomial of any real root of the PDT quartic is `X⁴ − X − 1`. -/
+/-- The minimal polynomial of any real root of the quartic is `X⁴ − X − 1`. -/
 theorem quartic_minpoly {QQ : ℝ} (hq : QQ ^ 4 = QQ + 1) :
     minpoly ℚ QQ = X ^ 4 - X - 1 := by
   refine (minpoly.eq_of_irreducible_of_monic PDT.quarticQ_irreducible ?_ (by monicity!)).symm

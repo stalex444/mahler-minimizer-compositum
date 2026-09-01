@@ -28,7 +28,7 @@ open Polynomial Complex PDT.RulerMinpoly
 
 /-! ### Brackets for the three real roots -/
 
-/-- Any real root of the PDT cubic exceeds `1`. -/
+/-- Any real root of the cubic exceeds `1`. -/
 private lemma cubic_gt_one {a : ℝ} (ha : a ^ 3 = a + 1) : 1 < a := by
   nlinarith [sq_nonneg (a + 9 / 10), sq_nonneg (a + 1 / 160), sq_nonneg a]
 
@@ -63,7 +63,7 @@ private lemma exists_quartic_neg_root : ∃ x : ℝ, x ^ 4 = x + 1 ∧ x < 0 := 
 
 /-! ### Uniqueness of the real roots -/
 
-/-- The real root of the PDT cubic is unique. -/
+/-- The real root of the cubic is unique. -/
 private lemma cubic_unique {a b : ℝ} (ha : a ^ 3 = a + 1) (hb : b ^ 3 = b + 1) : a = b := by
   have h1 : 1 < a := cubic_gt_one ha
   have h2 : 1 < b := cubic_gt_one hb
@@ -74,7 +74,7 @@ private lemma cubic_unique {a b : ℝ} (ha : a ^ 3 = a + 1) (hb : b ^ 3 = b + 1)
   · linarith [sub_eq_zero.mp h]
   · exact absurd h (ne_of_gt hpos)
 
-/-- The real root `> 1` of the PDT quartic is unique. -/
+/-- The real root `> 1` of the quartic is unique. -/
 private lemma quartic_pos_unique {a b : ℝ} (ha : a ^ 4 = a + 1) (h1 : 1 < a)
     (hb : b ^ 4 = b + 1) (h2 : 1 < b) : a = b := by
   have key : (a - b) * (a ^ 3 + a ^ 2 * b + a * b ^ 2 + b ^ 3 - 1) = 0 := by
@@ -112,7 +112,7 @@ private lemma nn_bounds : -73 / 100 < nn ∧ nn < -72 / 100 :=
 
 /-! ### The complex cubic root `σ` (positive imaginary part) -/
 
-/-- `σ`, the root of the PDT cubic in the upper half plane:
+/-- `σ`, the root of the cubic in the upper half plane:
 `σ = −ρ/2 + i·√(3ρ² − 4)/2`. -/
 private noncomputable def sig : ℂ :=
   ((-rr / 2 : ℝ) : ℂ) + ((Real.sqrt (3 * rr ^ 2 - 4) / 2 : ℝ) : ℂ) * Complex.I
@@ -133,7 +133,7 @@ private lemma sig_quadratic : sig ^ 2 + (rr : ℂ) * sig + (rr : ℂ) ^ 2 = 1 :=
   linear_combination (((Real.sqrt (3 * rr ^ 2 - 4) : ℝ) : ℂ) ^ 2 / 4) * hI
     - (1 / 4 : ℂ) * hd2C
 
-/-- `σ` is a root of the PDT cubic. -/
+/-- `σ` is a root of the cubic. -/
 private lemma sig_cubic : sig ^ 3 = sig + 1 := by
   have hrC : ((rr : ℝ) : ℂ) ^ 3 = (rr : ℂ) + 1 := by exact_mod_cast rr_cubic
   exact cubic_of_quadratic (rr : ℂ) sig hrC sig_quadratic
@@ -192,7 +192,7 @@ private lemma zc_disc_pos : 0 < 3 * (qq + nn) ^ 2 / 4 - qq * nn := by
     mul_neg_of_pos_of_neg (lt_trans one_pos qq_gt_one) nn_neg
   nlinarith [sq_nonneg (qq + nn)]
 
-/-- `z`, the root of the PDT quartic in the upper half plane:
+/-- `z`, the root of the quartic in the upper half plane:
 `z = −(Q + r₂)/2 + i·√(3(Q + r₂)²/4 − Q·r₂)`. -/
 private noncomputable def zc : ℂ :=
   ((-(qq + nn) / 2 : ℝ) : ℂ)
@@ -212,7 +212,7 @@ private lemma zc_quadratic :
   linear_combination (((Real.sqrt (3 * (qq + nn) ^ 2 / 4 - qq * nn) : ℝ) : ℂ) ^ 2) * hI
     - hd2C
 
-/-- `z` is a root of the PDT quartic. -/
+/-- `z` is a root of the quartic. -/
 private lemma zc_quartic : zc ^ 4 = zc + 1 := by
   have hkeyC : ((qq : ℂ) + (nn : ℂ)) * ((qq : ℂ) ^ 2 + (nn : ℂ) ^ 2) = 1 := by
     exact_mod_cast quartic_key
@@ -718,7 +718,7 @@ theorem rulerPoly_census :
       exact lt_irrefl 1 this
 
 /-- **The unit-circle census of the conjugates of the ruler product.**  For the
-real roots `ρ` of the PDT cubic and `Q` of the PDT quartic, the root set of
+real roots `ρ` of the cubic and `Q` of the quartic, the root set of
 `minpoly ℚ (ρQ)` in `ℂ` has EXACTLY 5 elements of modulus `> 1`, EXACTLY 7 of
 modulus `< 1`, and none on the unit circle. -/
 theorem ruler_conjugate_census {rho QQ : ℝ} (hr : rho ^ 3 = rho + 1)

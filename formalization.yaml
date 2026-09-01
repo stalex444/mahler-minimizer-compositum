@@ -1,44 +1,77 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
 version: "v0.4"
-# Review status: self-assessed by the author, with an in-house
-# adversarial mock-referee pass applied to this surface before
-# submission (see the review block below).
+# Review status: self-assessed by the author, with in-house adversarial
+# mock-referee passes applied to this surface before submission (see the
+# review block below).
 
 project:
-  name: "The plastic number as a spectral threshold: the Bedford-Kim family, its limit, and Lehmer's polynomial as its first member"
+  name: "The compositum of the two Mahler minimizers: exact measure, conjugate census, house, and minimal product recurrence, with the Bedford-Kim plastic family and Lehmer's polynomial"
   description: >-
-    Kernel-checked spectral results for the Bedford-Kim family
-    chi_n(x) = x^(n+1)(x^3 - x - 1) + (x^3 + x^2 - 1) — the
-    characteristic polynomials of the linear-fractional-recurrence
-    rational surface automorphisms, built from the plastic polynomial
-    and its (monic) reciprocal. Compared: (1) for n >= 7 the family has a
-    canonical root in [117/100, rho), the largest root below rho, the
-    sequence is strictly increasing, and it tends to rho — the real
-    root of x^3 = x + 1, the plastic number, smallest Pisot number and
-    the threshold constant of the Blanc-Cantat classification of
-    birational surface dynamical degrees; (2) every chi_n is strictly
-    positive on [rho, infinity); (3) the exact factorization
-    chi_7 = (x - 1) * L with L Lehmer's degree-10 polynomial, over any
-    commutative ring — Lehmer's number, whose logarithm is the proven
-    minimum positive entropy of a surface automorphism (McMullen), is
-    the n = 7 member of the plastic family; (4) L has a root in
-    [117/100, rho); (5) an exclusion witness: a nonreal root z of
-    x^4 = x + 1 with 1 < |rho * z| < rho * Q; (6) the twelve embedding
-    products ARE the conjugates of rho * Q, and (7) there are exactly
-    twelve of them — so (5) exhibits a second conjugate strictly
-    outside the unit circle, and rho * Q is therefore neither a Pisot
-    nor a Salem number. Whether
-    rho is ATTAINED as a dynamical degree is open in the literature;
-    no statement here claims it, and no "first formalization" claim is
-    made. Hypotheses are inline — rho and Q enter only through their
-    defining equations, plus the root-selection inequality 1 < Q on
-    the exclusion witness (5), which the quartic's negative real root
-    genuinely fails — and the compared statements use only core
-    Mathlib vocabulary (Filter.Tendsto, nhds, the complex norm, and
-    polynomial root multisets for (6)-(7)) — zero custom definitions.
-    The name prefix "ruler" in three statement names is the source
-    project's term for the product rho * Q; nothing in any statement
-    depends on it.
+    Kernel-checked certificates for the multiplicative compositum of
+    the two registered Mahler minimizers — rho, the real root of
+    x^3 = x + 1 (the plastic number: Smyth's nonreciprocal minimum,
+    Siegel's smallest Pisot number) and Q, the real root > 1 of
+    x^4 = x + 1 (the degree-4 entry of the minimal-measure tables) —
+    together with the Bedford-Kim spectral family whose limit rho is.
+    Seventeen compared theorems. The spectral half: (1) for n >= 7 the
+    family chi_n(x) = x^(n+1)(x^3 - x - 1) + (x^3 + x^2 - 1) has a
+    canonical root in [117/100, rho), largest below rho, strictly
+    increasing, tending to rho; (2) every chi_n is strictly positive
+    on [rho, infinity); (3) chi_7 = (x - 1) * L exactly, over any
+    commutative ring, with L Lehmer's degree-10 polynomial; (4) L has
+    a root in [117/100, rho). The compositum half, for the degree-12
+    minimal polynomial of rho * Q (written out in full in every
+    compared statement): (5) an exclusion witness — a nonreal quartic
+    root z with 1 < |rho * z| < rho * Q; (6) the twelve embedding
+    products ARE the conjugates of rho * Q, both directions; (7) there
+    are exactly twelve of them; (8) rho * Q is an algebraic unit, via
+    an explicit degree-11 cofactor over any commutative ring — the
+    (3, 4, 12) triple in the normal form alpha * beta * gamma = 1;
+    (9) the degree-12 polynomial is not reciprocal (neither its
+    reversal nor the reversal's negation), placing it in the regime of
+    Smyth's theorem; (10) degree multiplicativity — deg minpoly(rho*Q)
+    = deg minpoly(rho) * deg minpoly(Q) = 12; (11) the compositum in
+    sup form Q(rho) join Q(Q) = Q(rho*Q), of degree 12, with the two
+    simple extensions linearly disjoint; (12) the complete unit-circle
+    census — EXACTLY 5 conjugates strictly outside, EXACTLY 7 strictly
+    inside, NONE on the circle, so rho * Q is neither a Pisot nor a
+    Salem number; (13) the house — every conjugate other than rho * Q
+    has modulus strictly below rho * Q; (14) the exact Mahler measure
+    M = rho^2 * Q^2 * psi, where psi is the real root > 1 of
+    psi^4 = psi^3 + 1; (15) the registry bridge — M(X^4 - X - 1) = psi
+    and M(rulerPoly) = (rho * Q)^2 * M(X^4 - X - 1), re-proving in-repo the quantity pinned in registered entry PALOMAR-2026-08-31-000004;
+    (16) the order-12 Hadamard product recurrence — the termwise
+    product of any solutions of the cubic and quartic shift
+    recurrences satisfies the order-12 recurrence whose characteristic
+    polynomial is exactly the degree-12 polynomial, in any Q-algebra;
+    (17) the annihilator ideal of the product power sequence
+    n |-> (rho * Q)^n is EXACTLY the principal ideal of the degree-12
+    polynomial — the classical order <= 3 * 4 bound is an equality,
+    forced by the polynomial's kernel-held irreducibility. The results address three research audiences: the degree problem
+    for products and composita of algebraic numbers (the certified
+    (3,4,12) witness at a canonically distinguished pair, in the
+    field's own unit-product normal form); the Mahler-measure
+    tradition (the measure of the composed product of the two
+    degree-minimal polynomials, in closed form in the second-smallest
+    Pisot number); and composed products of polynomials (a certified
+    rational instance where the finite-field coprimality criterion is
+    unavailable and irreducibility is proved by elimination) — with
+    the Lean audience served by concrete exercise of the
+    Mahler-measure and linear-disjointness APIs. Like the golden
+    ratio, rho * Q is an algebraic unit of norm -1; the compared
+    cofactor identity is that norm computation, certified. No novelty claim is made for the measure identity (the entry is not aware of
+    it in the literature; the claimed contribution is the kernel
+    certificate), no "first formalization" claim is made anywhere,
+    and whether rho is ATTAINED as a dynamical degree is open in the
+    literature — no statement claims it. Hypotheses are inline: rho,
+    Q, psi enter only through their defining equations plus
+    root-selection inequalities, and the compared statements use only
+    core Mathlib vocabulary (Filter.Tendsto, nhds, the complex norm,
+    minpoly, Polynomial.rootSet, Set.ncard, Polynomial.mahlerMeasure,
+    IntermediateField adjoin/sup, Module.finrank, Finset.range sums) —
+    zero custom definitions. The name prefix "ruler" in statement
+    names is the source project's term for the product rho * Q;
+    nothing in any statement depends on it.
   authors:
     - "Stephanie Alexander"
   license: "MIT"
@@ -46,8 +79,8 @@ project:
     - "Stephanie Alexander"
 
 classification:
-  arxiv: ["math.DS", "math.NT"]
-  msc2020: ["11R06", "14E07", "37B40"]
+  arxiv: ["math.NT", "math.DS"]
+  msc2020: ["11R06", "11R04", "11B37", "14E07", "37B40"]
 
 sources:
   - title: "Dynamics of rational surface automorphisms: linear fractional recurrences"
@@ -78,26 +111,54 @@ sources:
       are the paper's geometric content, cited here.
     license: "unknown"
     author_endorsement: "n/a"
-  - title: "Dynamical degrees of birational transformations of projective surfaces"
+  - title: "On the product of the conjugates outside the unit circle of an algebraic integer"
     authors:
-      - "Jeremy Blanc"
-      - "Serge Cantat"
-    id: "Journal of the American Mathematical Society 29 (2016), 415-471"
-    # Crossref-verified 2026-08-31, first-hand: DOI 10.1090/jams831 (no
-    # slash) resolves and matches JAMS 29 (2016) 415-471; arXiv
-    # 1307.0361 (ar5iv full text verified, two passes).
+      - "Christopher J. Smyth"
+    id: "Bulletin of the London Mathematical Society 3 (1971), 169-175"
+    # Crossref-verified 2026-08-31: DOI resolves; Bull. LMS 3, 169-175,
+    # 1971, author Smyth.
     type: "article"
-    location: "https://doi.org/10.1090/jams831"
+    location: "https://doi.org/10.1112/blms/3.2.169"
     relationship: "background"
     note: >-
-      The classification the compared statements sit in: dynamical
-      degrees of birational surface transformations are Pisot or Salem
-      numbers (their Thm 1.2, credited to Diller-Favre); the plastic
-      number is named there as the infimum of the Pisot class and the
-      automorphism threshold (Sec 1.1.2, Cor 2.7). Not formalized here;
-      via this theorem (cited), the compared exclusion witness implies
-      rho * Q is not the dynamical degree of any birational surface
-      transformation.
+      Smyth's theorem: the Mahler measure of a nonreciprocal algebraic
+      integer is at least the real root of x^3 - x - 1 — the cubic
+      factor of this entry's pair is Smyth's constant, the literature's global nonreciprocal minimizer, not this entry's selection. The
+      compared nonreciprocity statement (9) places the degree-12
+      compositum polynomial in this theorem's regime. Smyth's theorem
+      itself is cited, not formalized.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Algebraic integers whose conjugates lie in the unit circle"
+    authors:
+      - "Carl Ludwig Siegel"
+    id: "Duke Mathematical Journal 11 (1944), 597-602"
+    # Crossref-verified 2026-08-31: DOI resolves, Duke Math. J. 11
+    # (1944); Crossref omits the page field — 597-602 is the standard
+    # citation, consistent with issue 3 of volume 11.
+    type: "article"
+    location: "https://doi.org/10.1215/S0012-7094-44-01152-X"
+    relationship: "background"
+    note: >-
+      Siegel proves the plastic number (real root of x^3 - x - 1) is
+      the smallest Pisot number. Cited for the canonical status of the
+      cubic; not formalized.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Etude de certaines fonctions meromorphes bornees sur le cercle unite. Application a un ensemble ferme d'entiers algebriques"
+    authors:
+      - "Jacques Dufresnoy"
+      - "Charles Pisot"
+    id: "Annales scientifiques de l'Ecole Normale Superieure (3) 72 (1955), 69-92"
+    # Verified 2026-08-31 via Numdam: ASENS_1955_3_72_1_69_0, PDF live.
+    type: "article"
+    location: "http://www.numdam.org/item/ASENS_1955_3_72_1_69_0/"
+    relationship: "background"
+    note: >-
+      Determines the smallest elements of the Pisot set (all Pisot
+      numbers below the golden ratio) — the ordering of the bottom of
+      the Pisot set that makes the pair's minimality statements
+      precise. Cited, not formalized.
     license: "unknown"
     author_endorsement: "n/a"
   - title: "Factorization of certain cyclotomic functions"
@@ -120,10 +181,362 @@ sources:
       Lehmer's polynomial exactly at the n = 7 member of the plastic
       family; the compared root statement locates a root of L in
       [117/100, rho). Lehmer's minimality theorems are not formalized
-      here.
+      here. Lehmer's problem is the tradition the minimal-measure
+      tables serve.
     license: "unknown"
     author_endorsement: "n/a"
-
+  - title: "Polynomials with small Mahler measure"
+    authors:
+      - "Michael J. Mossinghoff"
+    id: "Mathematics of Computation 67 (1998), 1697-1705"
+    # Crossref-verified 2026-08-31: DOI resolves, Math. Comp. 67,
+    # 1697-1705, 1998.
+    type: "article"
+    location: "https://doi.org/10.1090/S0025-5718-98-01006-0"
+    relationship: "background"
+    note: >-
+      The tables tradition in which x^4 - x - 1 and exact evaluations
+      of Mahler measures of specific polynomials live — the named
+      audience for the compared exact-measure statements (14)-(15).
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Minimal Mahler measures"
+    authors:
+      - "Michael J. Mossinghoff"
+      - "Georges Rhin"
+      - "Qiang Wu"
+    id: "Experimental Mathematics 17 (2008), no. 4, 451-458"
+    # Verified 2026-08-31 via Project Euclid: em/1243429958, landing
+    # page and PDF confirmed; no publisher DOI is cited here.
+    type: "article"
+    location: "https://projecteuclid.org/euclid.em/1243429958"
+    relationship: "background"
+    note: >-
+      Minimal Mahler measures by degree — the tables the degree-3 and
+      degree-4 minimality of the pair (rho, Q) belongs to.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "The Mahler measure of algebraic numbers: a survey"
+    authors:
+      - "Christopher J. Smyth"
+    id: "Number Theory and Polynomials, LMS Lecture Note Series 352, Cambridge University Press, 2008, pp. 322-349"
+    # Verified 2026-08-31 via the arXiv journal-ref field (math/0701397):
+    # book, series, and pages 322-349 confirmed.
+    type: "article"
+    location: "https://arxiv.org/abs/math/0701397"
+    relationship: "background"
+    note: >-
+      Survey frame tying minimizers, houses, and exact evaluations
+      together.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Pisot and Salem Numbers"
+    authors:
+      - "Marie-Jose Bertin"
+      - "Annette Decomps-Guilloux"
+      - "Marthe Grandet-Hugot"
+      - "Martine Pathiaux-Delefosse"
+      - "Jean-Pierre Schreiber"
+    id: "Birkhauser Basel, 1992"
+    # Crossref-verified 2026-08-31: book DOI resolves, all five author
+    # names confirmed.
+    type: "book"
+    location: "https://doi.org/10.1007/978-3-0348-8632-1"
+    relationship: "background"
+    note: >-
+      The structure of the Pisot set S and the Salem set T, and the
+      classical products-of-Pisot-numbers theme the compared census
+      speaks to.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Degrees of sums in a separable field extension"
+    authors:
+      - "I. Martin Isaacs"
+    id: "Proceedings of the American Mathematical Society 25 (1970), 638-641"
+    # Crossref-verified 2026-08-31: DOI resolves, Proc. AMS 25 (1970),
+    # first page 638.
+    type: "article"
+    location: "https://doi.org/10.1090/S0002-9939-1970-0258803-3"
+    relationship: "background"
+    note: >-
+      In characteristic 0, coprime degrees force deg(alpha + beta) =
+      mn — the SUM law whose PRODUCT analogue fails (zeta_3 * cbrt(2)
+      has degree 3, not 6). Cited to state honestly that no general
+      theorem yields the compared degree multiplicativity (10); the
+      equality at (rho, Q) is certified content, not bookkeeping.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "A degree problem for two algebraic numbers and their sum"
+    authors:
+      - "Paulius Drungilas"
+      - "Arturas Dubickas"
+      - "Christopher J. Smyth"
+    id: "Publicacions Matematiques 56 (2012), no. 2, 413-448"
+    # Verified 2026-08-31 via Project Euclid: pm/1340127812, page live.
+    type: "article"
+    location: "https://projecteuclid.org/euclid.pm/1340127812"
+    relationship: "background"
+    note: >-
+      Program-founding paper of the degree-problem line (Vilnius
+      school) classifying realizable degree triples for sums.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "On the degree of compositum of two number fields"
+    authors:
+      - "Paulius Drungilas"
+      - "Arturas Dubickas"
+      - "Florian Luca"
+    id: "Mathematische Nachrichten 286 (2013), no. 2-3, 171-180"
+    # Crossref-verified 2026-08-31: THREE authors (Drungilas, Dubickas,
+    # Luca), Math. Nachr. 286, 171-180.
+    type: "article"
+    location: "https://doi.org/10.1002/mana.201200124"
+    relationship: "background"
+    note: >-
+      The compositum-degree problem the Q(rho, Q) computation
+      instantiates.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "On degrees of three algebraic numbers with zero sum or unit product"
+    authors:
+      - "Paulius Drungilas"
+      - "Arturas Dubickas"
+    id: "Colloquium Mathematicum 143 (2016), no. 2, 159-167"
+    # Verified 2026-08-31 via EuDML: eudml.org/doc/283561 live.
+    type: "article"
+    location: "https://eudml.org/doc/283561"
+    relationship: "background"
+    note: >-
+      Defines product-feasible triples in the normal form
+      alpha * beta * gamma = 1 — exactly the form the compared unit
+      certificate (8) exhibits at (3, 4, 12).
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "A degree problem for the compositum of two number fields"
+    authors:
+      - "Paulius Drungilas"
+      - "Lukas Maciulevicius"
+    id: "Lithuanian Mathematical Journal 59 (2019), 39-47"
+    # Crossref-verified 2026-08-31: authors Drungilas and
+    # Maciulevicius, Lith. Math. J. 59, 39-47.
+    type: "article"
+    location: "https://doi.org/10.1007/s10986-019-09428-x"
+    relationship: "background"
+    note: "The compositum-degree program, continued."
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Degree of the product of two algebraic numbers one of which is of prime degree"
+    authors:
+      - "Paulius Virbalas"
+    id: "Mathematics 11 (2023), article 1485"
+    # Crossref-verified 2026-08-31: sole author Virbalas, Mathematics
+    # 11, art. 1485.
+    type: "article"
+    location: "https://doi.org/10.3390/math11061485"
+    relationship: "background"
+    note: >-
+      The product-degree problem specifically: conditions under which
+      deg(alpha * beta) = mp, and the catalog of attainable values.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Compositum of two number fields of prime power degree"
+    authors:
+      - "Paulius Virbalas"
+    id: "Lithuanian Mathematical Journal 65 (2025), 445-454"
+    # Crossref-verified 2026-08-31: SOLE author Virbalas, Lith. Math.
+    # J. 65, 445-454.
+    type: "article"
+    location: "https://doi.org/10.1007/s10986-025-09683-1"
+    relationship: "background"
+    note: "The degree-problem program is active now."
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "The product of a quartic and a sextic number cannot be octic"
+    authors:
+      - "Arturas Dubickas"
+      - "Lukas Maciulevicius"
+    id: "Open Mathematics 22 (2024)"
+    # Crossref-verified 2026-08-31: Open Mathematics 22, 2024, authors
+    # Dubickas and Maciulevicius.
+    type: "article"
+    location: "https://doi.org/10.1515/math-2023-0184"
+    relationship: "background"
+    note: >-
+      Completes the classification of product-feasible triples with
+      b <= 7: the feasibility of (3, 4, 12) is settled knowledge, and
+      this entry claims only the certified witness at the canonical
+      pair, not the feasibility fact.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Irreducibles and the composed product for polynomials over a finite field"
+    authors:
+      - "Joel V. Brawley"
+      - "Leonard Carlitz"
+    id: "Discrete Mathematics 65 (1987), 115-139"
+    # Crossref-verified 2026-08-31: DOI 10.1016/0012-365X(87)90135-X
+    # resolves to the 1987 Brawley-Carlitz paper, Discrete Math. 65,
+    # 115-139 (an earlier version's ScienceDirect PII pointed to a 1993
+    # article; corrected to this DOI).
+    type: "article"
+    location: "https://doi.org/10.1016/0012-365X(87)90135-X"
+    relationship: "background"
+    note: >-
+      Composed multiplication — the product polynomial whose roots are
+      the products of roots — over finite fields, where coprime
+      degrees imply irreducibility. The characteristic-0 analogue at
+      (rho, Q) is what statements (6), (7), (10) certify.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Factorization and irreducibility of composed products"
+    authors:
+      - "Lukas Kolsch"
+      - "Lucas Krompholz"
+      - "Gohar Kyureghyan"
+    id: "Designs, Codes and Cryptography 93 (2025), no. 3, 591-614 (online 4 Dec 2024)"
+    # Crossref-verified 2026-08-31: vol 93, 591-614, online 2024-12-04.
+    type: "article"
+    location: "https://doi.org/10.1007/s10623-024-01529-0"
+    relationship: "background"
+    note: >-
+      The composed-product line is active: builds directly on
+      Brawley-Carlitz 1987.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Recurrence Sequences"
+    authors:
+      - "Graham Everest"
+      - "Alf van der Poorten"
+      - "Igor Shparlinski"
+      - "Thomas Ward"
+    id: "Mathematical Surveys and Monographs 104, American Mathematical Society, 2003"
+    # Crossref-verified 2026-08-31: all four authors, series, 2003.
+    type: "book"
+    location: "https://doi.org/10.1090/surv/104"
+    relationship: "background"
+    note: >-
+      The standard linear-recurrence-sequences reference: closure of
+      LRS under termwise (Hadamard) product, dominant roots, decision
+      problems — the setting of compared statements (16)-(17).
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Suites recurrentes lineaires: proprietes algebriques et arithmetiques"
+    authors:
+      - "Luigi Cerlienco"
+      - "Maurice Mignotte"
+      - "Francesco Piras"
+    id: "L'Enseignement Mathematique (2) 33 (1987), 67-108"
+    # Pages 67-108 verified 2026-08-31 across independent
+    # bibliographies (OEIS A077236 reference line, citation indices).
+    type: "article"
+    location: "https://www.e-periodica.ch/digbib/view?pid=ens-001:1987:33"
+    relationship: "background"
+    note: >-
+      The classical treatment of the order of sums and products of
+      linear recurrence sequences — the order <= mn bound that the
+      compared minimality statement (17) turns into an equality at
+      (rho, Q).
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Strong primality tests that are not sufficient"
+    authors:
+      - "William Adams"
+      - "Daniel Shanks"
+    id: "Mathematics of Computation 39 (1982), 255-300"
+    # Crossref-verified 2026-08-31: Math. Comp. 39, 255-300.
+    type: "article"
+    location: "https://doi.org/10.1090/S0025-5718-1982-0658231-9"
+    relationship: "background"
+    note: >-
+      The Perrin-sequence literature (characteristic polynomial
+      x^3 - x - 1): the cubic factor of the compared product
+      recurrence is the Padovan/Perrin recurrence.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Positivity problems for low-order linear recurrence sequences"
+    authors:
+      - "Joel Ouaknine"
+      - "James Worrell"
+    id: "Proceedings of the 25th Annual ACM-SIAM Symposium on Discrete Algorithms (SODA 2014), 366-379"
+    # Crossref-verified 2026-08-31: title and pages 366-379 confirmed.
+    type: "article"
+    location: "https://doi.org/10.1137/1.9781611973402.27"
+    relationship: "background"
+    note: >-
+      Context, in one sentence: a simple recurrence with a dominant
+      real root is the operative hypothesis class of the LRS
+      decision-problems literature, and the compared census and house
+      certify both properties for this order-12 instance. No claim of
+      relevance to their decidability results is made.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Ultimate positivity is decidable for simple linear recurrence sequences"
+    authors:
+      - "Joel Ouaknine"
+      - "James Worrell"
+    id: "ICALP 2014, Lecture Notes in Computer Science 8573, 330-341"
+    # Crossref-verified 2026-08-31: title and pages 330-341 confirmed.
+    type: "article"
+    location: "https://doi.org/10.1007/978-3-662-43951-7_28"
+    relationship: "background"
+    note: "Companion context citation to the SODA 2014 entry above."
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "OEIS A000931 (Padovan), A001608 (Perrin), A017817, A050443"
+    authors:
+      - "OEIS Foundation"
+    id: "The On-Line Encyclopedia of Integer Sequences"
+    # Verified 2026-08-31 via OEIS JSON: A000931/A001608 satisfy
+    # a(n) = a(n-2) + a(n-3); A017817/A050443 satisfy
+    # a(n) = a(n-3) + a(n-4); A050443 is the quartic trace sequence.
+    type: "misc"
+    location: "https://oeis.org/A050443"
+    relationship: "background"
+    note: >-
+      The concrete integer members of the two recurrence families in
+      compared statement (16): the cubic shift recurrence carries
+      Padovan/Perrin, the quartic shift recurrence carries A017817 and
+      the trace sequence A050443.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Enumerative Combinatorics, volume 1 (2nd ed.), Proposition 4.2.5"
+    authors:
+      - "Richard P. Stanley"
+    id: "Cambridge Studies in Advanced Mathematics 49, Cambridge University Press"
+    # Proposition number verified 2026-08-31 from Stanley's posted PDF
+    # (math.mit.edu/~rstan/ec/ec1.pdf): Prop. 4.2.5, Hadamard products
+    # of rational power series are rational (attributed to Hadamard
+    # 1899 in the chapter notes).
+    type: "book"
+    location: "https://math.mit.edu/~rstan/ec/ec1.pdf"
+    relationship: "background"
+    note: >-
+      Rationality of Hadamard products of rational generating
+      functions — the generating-function face of the order <= mn
+      bound behind statement (16).
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Dynamical degrees of birational transformations of projective surfaces"
+    authors:
+      - "Jeremy Blanc"
+      - "Serge Cantat"
+    id: "Journal of the American Mathematical Society 29 (2016), 415-471"
+    # Crossref-verified 2026-08-31, first-hand: DOI 10.1090/jams831 (no
+    # slash) resolves and matches JAMS 29 (2016) 415-471; arXiv
+    # 1307.0361 (ar5iv full text verified, two passes).
+    type: "article"
+    location: "https://doi.org/10.1090/jams831"
+    relationship: "background"
+    note: >-
+      The classification the exclusion corollary sits in: dynamical
+      degrees of birational surface transformations are Pisot or Salem
+      numbers (their Thm 1.2, credited to Diller-Favre), and the
+      spectrum is a well-ordered set; the plastic number is named
+      there as the infimum of the Pisot class and the automorphism
+      threshold (Sec 1.1.2, Cor 2.7). Not formalized here; via this
+      theorem (cited), the compared census implies rho * Q is not the
+      dynamical degree of any birational surface transformation.
+    license: "unknown"
+    author_endorsement: "n/a"
   - title: "Dynamics on blowups of the projective plane"
     authors:
       - "Curtis T. McMullen"
@@ -141,36 +554,77 @@ sources:
       Not formalized here. Additionally, McMullen's eq (2.4) gives the
       characteristic-polynomial family of the Coxeter elements of W_n
       as P_n(t) = [t^(n-2)(t^3 - t - 1) + (t^3 + t^2 - 1)]/(t - 1) —
-      this entry's chi family divided by (t - 1) — with the remark that
+      this entry's chi family divided by (t - 1) (index shift: McMullen's n is this entry's n + 3, so his Q_10 is the n = 7 member) — with the remark that
       Q_10 coincides with Lehmer's polynomial: the compared
       factorization chi_7 = (x - 1) * L is the kernel certificate of
       that remark.
     license: "unknown"
     author_endorsement: "n/a"
+  - title: "Salem/Pisot Numbers in the Weyl Spectrum"
+    authors:
+      - "Kyounghee Kim"
+    id: "arXiv:2312.17729 (preprint; v2, 20 Jan 2025)"
+    # Verified 2026-08-31 from the arXiv abstract: title and author
+    # confirmed; NO journal reference as of v2 — cited as an arXiv
+    # preprint only, not as published.
+    type: "misc"
+    location: "https://arxiv.org/abs/2312.17729"
+    relationship: "background"
+    note: >-
+      A live instance of the membership question — which specific
+      Salem/Pisot numbers are realized as dynamical degrees of
+      birational maps — legitimizing the question the exclusion
+      corollary answers negatively at rho * Q. arXiv preprint.
+    license: "unknown"
+    author_endorsement: "n/a"
 
 related_formalizations:
-  - id: "https://github.com/leanprover-community/mathlib4 (intermediate value theorem, sSup/compactness, monotone convergence, Filter.Tendsto, complex norm)"
+  - id: "https://github.com/leanprover-community/mathlib4 (intermediate value theorem, sSup/compactness, monotone convergence, Filter.Tendsto, complex norm, minpoly, rootSet, Set.ncard, Polynomial.mahlerMeasure, IntermediateField, LinearDisjoint)"
     relationship: "builds-on"
     note: >-
       The compared statements use only core Mathlib vocabulary — zero
       custom definitions on the compared surface. Mathlib contains no
-      Salem numbers, no Lehmer polynomial, and no Pisot theory (checked
-      at the pin, 2026-08-25): the family, its canonical root sequence,
-      and the exclusion argument are this entry's contribution.
+      Salem numbers, no Lehmer polynomial, no Pisot theory, and no
+      Hadamard-product theory for linear recurrences (checked at the
+      pin): the family, the compositum certificates, the census, the
+      exact measure evaluations, and the minimal product recurrence
+      are this entry's contribution. Mathlib's
+      Polynomial.mahlerMeasure and
+      IntermediateField.LinearDisjoint.of_finrank_coprime are consumed
+      (the latter disclosed as near-automating the disjointness half
+      of statement (11)).
+
+  - id: "Registered entry PALOMAR-2026-08-31-000004 (stalex444/mahler-measure-minima, registered revision ca3df22)"
+    relationship: "other"
+    note: >-
+      The registered sibling entry that kernel-certifies the pair's
+      selection: for each degree d in {2, 3, 4}, x^d - x - 1 attains
+      the minimal Mahler measure among monic irreducible integer
+      polynomials of degree d with measure above one, with the minima
+      pinned exactly (M^3 = M + 1 at degree 3; M^4 = M^3 + 1 at degree
+      4). Compared statement (15) re-proves that entry's degree-4 quantity in-repo as the left conjunct of (15); the values match: M(X^4 - X - 1) = psi and M(rulerPoly) =
+      (rho * Q)^2 * M(X^4 - X - 1). The selection of the pair (rho, Q)
+      is therefore the literature's and the registry's, not this
+      entry's.
 
   - id: "https://github.com/stalex444/pdt-lean (parent development; pinned: commit d66ffbe813e48636aa636ffcd80070b81cbf10da)"
     relationship: "other"
     note: >-
       The broader public project this entry belongs to. This repository
       is the complete, self-contained proof development for the
-      compared statements, not a wrapper: the three proof modules
-      (PdtIrreducible, PdtSalemFamily, PdtRulerMinpoly), the compared
-      surface, and the pinned toolchain build here with no imports from
-      the parent.
+      compared statements, not a wrapper: all six proof modules build
+      here with the pinned toolchain and no imports from the parent.
+      PdtIrreducible, PdtSalemFamily, and PdtRulerMinpoly descend from
+      material in the parent development at the pinned revision;
+      PdtRulerCensus, PdtRulerMeasure, and PdtRulerRecurrence (with
+      the compositum extensions of PdtRulerMinpoly (unit, nonreciprocity, degree multiplicativity, sup form, linear disjointness): unit, nonreciprocity,
+      degree multiplicativity, compositum sup form, linear
+      disjointness) are native to this repository and appear in no
+      other development.
 
 status:
   scope: >-
-    Formalized, 7 compared theorems, hypotheses inline. (1)
+    Formalized, 17 compared theorems, hypotheses inline. (1)
     plastic_salem_family: existence of the canonical root sequence of
     chi_n in [117/100, rho) for n >= 7 — largest below rho, strictly
     increasing, tending to rho. (2) family_pos_of_rho_le: chi_n > 0 on
@@ -181,14 +635,39 @@ status:
     ruler_conjugates_eq_embedding_products: a complex number is a root
     of minpoly(rho * Q) iff it is a product of a cubic root with a
     quartic root — both directions. (7) ruler_conjugates_card: that
-    root set has exactly twelve elements. NOT formalized (cited):
-    the dynamical realization of the roots as automorphism entropies;
-    the Salem property; the emptiness of (1, 117/100); the
-    Blanc-Cantat classification. No physical claim is part of the
+    root set has exactly twelve elements. (8) ruler_unit: rho * Q
+    times an explicit degree-11 cofactor equals 1, over any
+    commutative ring. (9) rulerPoly_nonreciprocal: the degree-12
+    polynomial is neither its reversal nor the reversal's negation.
+    (10) ruler_degree_multiplicative: deg minpoly(rho * Q) =
+    deg minpoly(rho) * deg minpoly(Q). (11) ruler_linearDisjoint:
+    Q(rho) join Q(Q) = Q(rho * Q), of finrank 12, with Q(rho) and
+    Q(Q) linearly disjoint. (12) ruler_conjugate_census: exactly 5
+    conjugates of modulus > 1, exactly 7 of modulus < 1, none of
+    modulus 1 (Set.ncard). (13) ruler_house: every conjugate other
+    than rho * Q has modulus < rho * Q. (14) ruler_mahler_measure:
+    M(the degree-12 polynomial) = rho^2 * Q^2 * psi with
+    psi^4 = psi^3 + 1, 1 < psi. (15) ruler_mahler_eq_quartic_measure:
+    M(X^4 - X - 1) = psi AND M(the degree-12 polynomial) =
+    (rho * Q)^2 * M(X^4 - X - 1). (16) product_recurrence_charpoly:
+    the termwise product of any cubic-recurrence and
+    quartic-recurrence solutions in a Q-algebra satisfies the order-12
+    recurrence with the degree-12 characteristic polynomial. (17)
+    product_annihilator_iff: a rational polynomial annihilates the
+    product power sequence iff the degree-12 polynomial divides it.
+    NOT formalized (cited): the dynamical realization of the roots as
+    automorphism entropies; the Salem property; the emptiness of
+    (1, 117/100); the Blanc-Cantat classification; Smyth's and
+    Siegel's minimality theorems; the minimality of the pair (rho, Q)
+    itself, kernel-certified in the registered sibling entry
+    PALOMAR-2026-08-31-000004. No physical claim is part of the
     compared statements.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms: ["propext", "Classical.choice", "Quot.sound"]
+  # Every compared theorem's #print axioms output is at most
+  # [propext, Classical.choice, Quot.sound]; lehmer_first_rung and
+  # ruler_unit need propext and Quot.sound only.
 
 automation:
   methods:
@@ -199,27 +678,31 @@ automation:
         AI-assisted proof drafting and error-loop iteration against
         lake build; every compared declaration kernel-checked and
         axiom-audited (#print axioms: propext, Classical.choice,
-        Quot.sound; the factorization needs propext and Quot.sound
-        only). The proof skeleton was numerically pre-verified (sympy,
-        exact rational arithmetic where stated) before formalization.
+        Quot.sound; the factorization and the unit certificate need
+        propext and Quot.sound only). The proof skeleton was
+        numerically pre-verified (sympy, exact rational arithmetic
+        where stated) before formalization.
       cost:
-        wall_time: "one session, 2026-08-25 (kernel closure); the ruler-conjugates statements (6)-(7) added 2026-08-29"
+        wall_time: "one session, 2026-08-25 (kernel closure of the spectral half); the ruler-conjugates statements (6)-(7) added 2026-08-29; the compositum statements (8)-(17) and their proof modules 2026-08-30 through 2026-08-31"
         spend_usd: "subscription-based"
         hardware: "remote development container"
       prompting_notes: >-
-        Statements fixed from the source paper first; proofs iterated
-        against the compiler gate by gate (recurrence and endpoint
-        identities, sSup root canonicity, the monotone step, the
-        power-blowup limit, the Vieta factorization witness).
+        Statements fixed from the source papers and the significance
+        panel's plan first; proofs iterated against the compiler gate
+        by gate (recurrence and endpoint identities, sSup root
+        canonicity, the monotone step, the power-blowup limit, the
+        Vieta factorization witness, the census distinctness matrix,
+        the mahlerMeasure root-product collapse, the annihilator
+        divisibility argument).
     - method: "manual"
       models: []
       framework: "n/a"
       tool_setup: >-
         Author-directed target selection, statement design, and
-        acceptance; statements audited by the author against the source
-        paper's spectral statement.
+        acceptance; statements audited by the author against the
+        source papers' statements.
       cost:
-        wall_time: "included in the session above"
+        wall_time: "included in the sessions above"
         spend_usd: "not tracked"
         hardware: "local machine"
       prompting_notes: "n/a"
@@ -245,19 +728,42 @@ fidelity:
     additionally requires the cited Blanc-Cantat classification; the
     identification of the products of embeddings as the conjugates of
     rho * Q is NOT cited but formalized here, as statements (6) and
-    (7).
-    All finite margin claims are exact: the brackets are rational and
-    kernel-decided; no floating point enters any compared statement or
-    proof.
+    (7). All finite margin claims are exact: the brackets are rational
+    and kernel-decided; no floating point enters any compared
+    statement or proof. Four further disclosures on the compositum
+    half. (i) Internal Vieta closed forms are carried division-free
+    (e.g. Q * r2 * |z|^2 = -1 rather than |z|^2 = -1/(Q * r2)); the
+    compared statements are unaffected. (ii) The linear-disjointness
+    half of statement (11) is near-automatic from Mathlib's
+    IntermediateField.LinearDisjoint.of_finrank_coprime given the
+    kernel-held degrees 3 and 4; the substantive content is the
+    sup-equality. (iii) psi enters statements (14)-(15) only through
+    its defining equation psi^4 = psi^3 + 1 and 1 < psi, inline; it is
+    not a new constant but forced by the same quartic (psi = -1/r2 for
+    the quartic's negative real root r2), and no numeric value of psi,
+    rho, or Q enters any statement or proof. (iv) The minimality
+    statement (17) is the annihilator iff for the canonical member of
+    the product family — the power sequence n |-> (rho * Q)^n — not
+    for every not-identically-zero product of solutions; the classical
+    order <= 3 * 4 bound is certified an equality at that canonical
+    member, which is what the minimal-polynomial identification
+    supports without additional nonvanishing hypotheses.
 
 review:
   status: "self-assessed"
   reviewers:
     - "Stephanie Alexander"
   notes: >-
-    Statements audited by the author against the source paper's
-    spectral statement; the kernel and the axiom audit are the
-    acceptance criteria. An in-house adversarial mock-referee pass, automated (AI-assisted: Anthropic Claude, in Claude Code, under the author's direction; 2026-08-25) was applied to this surface before submission.
+    Statements audited by the author against the source papers; the
+    kernel and the axiom audit are the acceptance criteria. Three
+    in-house adversarial passes, each automated (AI-assisted:
+    Anthropic Claude, in Claude Code, under the author's direction),
+    were applied to this surface: a mock-referee pass on the original
+    seven-theorem surface (2026-08-25, re-run 2026-08-30); a four-lens
+    significance panel on the compositum extension — three independent
+    research-framing reviews plus an adversarial judge, whose
+    recommended plan this surface implements, including the corrected
+    bibliography (2026-08-31); and an assembly pass on the extended seventeen-theorem surface (2026-08-31).
 
 alignment:
   namespace: "PlasticThreshold"
@@ -290,10 +796,8 @@ alignment:
       status: "proved"
       note: >-
         A nonreal quartic root z with 1 < |rho * z| < rho * Q — given
-        statements (6) and (7), which formalize the identification of
-        the embedding products as the conjugates of rho * Q, a second
-        conjugate outside the unit circle, so rho * Q is neither Pisot
-        nor Salem.
+        statements (6) and (7), a second conjugate outside the unit
+        circle, so rho * Q is neither Pisot nor Salem.
     - source: "this work (the identification the exclusion corollary rests on)"
       lean: "PlasticThreshold.ruler_conjugates_eq_embedding_products"
       module: "Solution"
@@ -309,8 +813,93 @@ alignment:
       note: >-
         The root set of minpoly(rho * Q) over the complex numbers has
         exactly twelve elements.
+    - source: "this work (unit certificate; the alpha * beta * gamma = 1 normal form of Drungilas-Dubickas 2016, cited)"
+      lean: "PlasticThreshold.ruler_unit"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        rho * Q times an explicit degree-11 integer-coefficient
+        cofactor equals 1, over any commutative ring — the (3, 4, 12)
+        triple realized in the unit-product normal form.
+    - source: "this work (nonreciprocity; the regime of Smyth 1971, cited)"
+      lean: "PlasticThreshold.rulerPoly_nonreciprocal"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        The degree-12 polynomial is neither its own reversal nor the
+        negation of its reversal (both fail at the coefficient of
+        X^3).
+    - source: "this work (product-degree witness at the canonical pair; program context Drungilas-Dubickas-Smyth 2012 through Virbalas 2025, cited; (3, 4, 12) feasibility known — Dubickas-Maciulevicius 2024, cited)"
+      lean: "PlasticThreshold.ruler_degree_multiplicative"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        deg minpoly(rho * Q) = deg minpoly(rho) * deg minpoly(Q) =
+        3 * 4 = 12. No general theorem forces this for products; the
+        contribution claimed is the certified witness at the canonical
+        pair, not the feasibility fact.
+    - source: "this work (sup-equality; the disjointness half near-automatic from Mathlib's of_finrank_coprime, disclosed)"
+      lean: "PlasticThreshold.ruler_linearDisjoint"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        Q(rho) join Q(Q) = Q(rho * Q), of degree 12 over Q, with the
+        two simple extensions linearly disjoint.
+    - source: "this work (complete unit-circle census)"
+      lean: "PlasticThreshold.ruler_conjugate_census"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        Exactly 5 conjugates of modulus > 1, exactly 7 of modulus < 1,
+        none on the unit circle — so rho * Q is neither a Pisot nor a
+        Salem number.
+    - source: "this work (the house; the dominant-root hypothesis of Ouaknine-Worrell 2014, cited as context)"
+      lean: "PlasticThreshold.ruler_house"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        Every conjugate of rho * Q other than rho * Q itself has
+        modulus strictly below rho * Q.
+    - source: "this work (exact measure; no novelty claim — the entry is not aware of the identity in the literature as of 2026-08-31; tables tradition Mossinghoff 1998 / Mossinghoff-Rhin-Wu 2008, cited)"
+      lean: "PlasticThreshold.ruler_mahler_measure"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        M(the degree-12 polynomial) = rho^2 * Q^2 * psi, with psi the
+        real root > 1 of psi^4 = psi^3 + 1 (psi = -1/r2 for the same
+        quartic's negative real root — disclosed as forced, not a new
+        constant).
+    - source: "Registry-internal: PALOMAR-2026-08-31-000004 (the consumed degree-4 pinned quantity); the bridge identity is this work"
+      lean: "PlasticThreshold.ruler_mahler_eq_quartic_measure"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        M(X^4 - X - 1) = psi AND M(the degree-12 polynomial) =
+        (rho * Q)^2 * M(X^4 - X - 1) — the registered sibling's
+        quantity consumed as a mechanical identity, not prose.
+    - source: "this work (order-12 Hadamard recurrence; the order <= mn bound classical — Cerlienco-Mignotte-Piras 1987 / Everest-van der Poorten-Shparlinski-Ward 2003, cited)"
+      lean: "PlasticThreshold.product_recurrence_charpoly"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        The termwise product of any solutions of the cubic and quartic
+        shift recurrences satisfies the order-12 recurrence whose
+        characteristic polynomial is the degree-12 polynomial, in any
+        Q-algebra.
+    - source: "this work (minimality — the annihilator ideal; the in-repo irreducibility of the degree-12 polynomial is load-bearing)"
+      lean: "PlasticThreshold.product_annihilator_iff"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        A rational polynomial annihilates the product power sequence
+        n |-> (rho * Q)^n iff the degree-12 polynomial divides it — in
+        particular no nonzero recurrence of order < 12, so the
+        classical order <= 3 * 4 bound is an equality at the canonical
+        member.
 
 acknowledgements: >-
   Built on Mathlib and the Lean 4 toolchain — in particular the
-  intermediate value theorem, order-compactness, and monotone
-  convergence machinery; thanks to the leanprover community. Developed with AI assistance (Anthropic Claude, in Claude Code) under the author's direction.
+  intermediate value theorem, order-compactness, monotone convergence,
+  minpoly/rootSet, Mahler measure, and IntermediateField machinery;
+  thanks to the leanprover community. Developed with AI assistance
+  (Anthropic Claude, in Claude Code) under the author's direction.

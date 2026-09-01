@@ -1,11 +1,15 @@
 /-
-Solution: proofs of the plastic-threshold challenge statements,
-transferred from the PdtSalemFamily development (PDT.SalemFamily).
+Solution: proofs of the challenge statements, transferred from the
+PdtIrreducible / PdtSalemFamily / PdtRulerMinpoly / PdtRulerCensus /
+PdtRulerMeasure / PdtRulerRecurrence developments.
 -/
 import PdtSalemFamily
 import PdtRulerMinpoly
+import PdtRulerCensus
+import PdtRulerMeasure
+import PdtRulerRecurrence
 
-open Polynomial
+open Polynomial IntermediateField
 
 namespace PlasticThreshold
 
@@ -80,6 +84,95 @@ theorem ruler_conjugates_card {rho Q : ℝ} (hrho : rho ^ 3 = rho + 1)
   rw [PDT.RulerMinpoly.ruler_minpoly hrho hQ]
   exact PDT.RulerMinpoly.ruler_conjugates_card
 
+/-- **(8) The ruler product is an algebraic unit.** -/
+theorem ruler_unit {R : Type*} [CommRing R] (r q : R)
+    (hr : r ^ 3 = r + 1) (hq : q ^ 4 = q + 1) :
+    (r * q) * ((r * q) ^ 11 - 3 * (r * q) ^ 8 - 2 * (r * q) ^ 7 + 2 * (r * q) ^ 5
+      - (r * q) ^ 4 - 3 * (r * q) ^ 3 - (r * q) ^ 2 + 1) = 1 :=
+  PDT.RulerMinpoly.ruler_unit r q hr hq
+
+/-- **(9) The degree-12 polynomial is not reciprocal.** -/
+theorem rulerPoly_nonreciprocal :
+    (X ^ 12 - 3 * X ^ 9 - 2 * X ^ 8 + 2 * X ^ 6 - X ^ 5 - 3 * X ^ 4 - X ^ 3 + X - 1
+        : ℚ[X]).reverse
+      ≠ (X ^ 12 - 3 * X ^ 9 - 2 * X ^ 8 + 2 * X ^ 6 - X ^ 5 - 3 * X ^ 4 - X ^ 3 + X - 1) ∧
+    (X ^ 12 - 3 * X ^ 9 - 2 * X ^ 8 + 2 * X ^ 6 - X ^ 5 - 3 * X ^ 4 - X ^ 3 + X - 1
+        : ℚ[X]).reverse
+      ≠ -(X ^ 12 - 3 * X ^ 9 - 2 * X ^ 8 + 2 * X ^ 6 - X ^ 5 - 3 * X ^ 4 - X ^ 3 + X - 1) :=
+  PDT.RulerMinpoly.rulerPoly_nonreciprocal
+
+/-- **(10) Degree multiplicativity at the ruler product.** -/
+theorem ruler_degree_multiplicative {rho Q : ℝ} (hrho : rho ^ 3 = rho + 1)
+    (hQ : Q ^ 4 = Q + 1) :
+    (minpoly ℚ (rho * Q)).natDegree
+      = (minpoly ℚ rho).natDegree * (minpoly ℚ Q).natDegree :=
+  PDT.RulerMinpoly.ruler_degree_multiplicative hrho hQ
+
+/-- **(11) The compositum, its degree, and linear disjointness.** -/
+theorem ruler_linearDisjoint {rho Q : ℝ} (hrho : rho ^ 3 = rho + 1)
+    (hQ : Q ^ 4 = Q + 1) :
+    ℚ⟮rho⟯ ⊔ ℚ⟮Q⟯ = ℚ⟮rho * Q⟯ ∧
+      Module.finrank ℚ ↥(ℚ⟮rho⟯ ⊔ ℚ⟮Q⟯) = 12 ∧
+      ℚ⟮rho⟯.LinearDisjoint ℚ⟮Q⟯ :=
+  ⟨PDT.RulerMinpoly.ruler_compositum_sup hrho hQ,
+    PDT.RulerMinpoly.ruler_compositum_finrank hrho hQ,
+    PDT.RulerMinpoly.ruler_linearDisjoint hrho hQ⟩
+
+/-- **(12) The unit-circle census of the conjugates of the ruler product.** -/
+theorem ruler_conjugate_census {rho Q : ℝ} (hrho : rho ^ 3 = rho + 1)
+    (hQ : Q ^ 4 = Q + 1) :
+    {ζ ∈ (minpoly ℚ (rho * Q)).rootSet ℂ | 1 < ‖ζ‖}.ncard = 5 ∧
+      {ζ ∈ (minpoly ℚ (rho * Q)).rootSet ℂ | ‖ζ‖ < 1}.ncard = 7 ∧
+      ∀ ζ ∈ (minpoly ℚ (rho * Q)).rootSet ℂ, ‖ζ‖ ≠ 1 :=
+  PDT.RulerCensus.ruler_conjugate_census hrho hQ
+
+/-- **(13) The house of the ruler product is `ρQ` itself.** -/
+theorem ruler_house {rho Q : ℝ} (hrho : rho ^ 3 = rho + 1) (hQ : Q ^ 4 = Q + 1)
+    (hQ1 : 1 < Q) :
+    ∀ ζ ∈ (minpoly ℚ (rho * Q)).rootSet ℂ, ζ ≠ ((rho * Q : ℝ) : ℂ) →
+      ‖ζ‖ < rho * Q :=
+  PDT.RulerCensus.ruler_house hrho hQ hQ1
+
+/-- **(14) The exact Mahler measure of the degree-12 polynomial.** -/
+theorem ruler_mahler_measure {rho Q psi : ℝ} (hrho : rho ^ 3 = rho + 1)
+    (hQ : Q ^ 4 = Q + 1) (hQ1 : 1 < Q)
+    (hpsi : psi ^ 4 = psi ^ 3 + 1) (hpsi1 : 1 < psi) :
+    ((X ^ 12 - 3 * X ^ 9 - 2 * X ^ 8 + 2 * X ^ 6 - X ^ 5 - 3 * X ^ 4 - X ^ 3 + X - 1
+        : ℚ[X]).map (algebraMap ℚ ℂ)).mahlerMeasure = rho ^ 2 * Q ^ 2 * psi :=
+  PDT.RulerMeasure.ruler_mahler_measure hrho hQ hQ1 hpsi hpsi1
+
+/-- **(15) The registry bridge, as a product identity.** -/
+theorem ruler_mahler_eq_quartic_measure {rho Q psi : ℝ} (hrho : rho ^ 3 = rho + 1)
+    (hQ : Q ^ 4 = Q + 1) (hQ1 : 1 < Q)
+    (hpsi : psi ^ 4 = psi ^ 3 + 1) (hpsi1 : 1 < psi) :
+    ((X ^ 4 - X - 1 : ℚ[X]).map (algebraMap ℚ ℂ)).mahlerMeasure = psi ∧
+      ((X ^ 12 - 3 * X ^ 9 - 2 * X ^ 8 + 2 * X ^ 6 - X ^ 5 - 3 * X ^ 4 - X ^ 3 + X - 1
+          : ℚ[X]).map (algebraMap ℚ ℂ)).mahlerMeasure
+        = (rho * Q) ^ 2 * ((X ^ 4 - X - 1 : ℚ[X]).map (algebraMap ℚ ℂ)).mahlerMeasure :=
+  ⟨PDT.RulerMeasure.quartic_mahler_measure hpsi hpsi1,
+    PDT.RulerMeasure.ruler_mahler_eq_quartic_measure hrho hQ hQ1⟩
+
+/-- **(16) The order-12 product recurrence, in characteristic-polynomial
+form.** -/
+theorem product_recurrence_charpoly {A : Type*} [CommRing A] [Algebra ℚ A]
+    (u v : ℕ → A)
+    (hu : ∀ n, u (n + 3) = u (n + 1) + u n)
+    (hv : ∀ n, v (n + 4) = v (n + 1) + v n) (n : ℕ) :
+    ∑ k ∈ Finset.range 13,
+      (X ^ 12 - 3 * X ^ 9 - 2 * X ^ 8 + 2 * X ^ 6 - X ^ 5 - 3 * X ^ 4 - X ^ 3 + X - 1
+        : ℚ[X]).coeff k • (u (n + k) * v (n + k)) = 0 :=
+  PDT.RulerRecurrence.product_recurrence_charpoly u v hu hv n
+
+/-- **(17) The annihilator ideal is exactly the principal ideal of the
+degree-12 polynomial.** -/
+theorem product_annihilator_iff {rho Q : ℝ}
+    (hrho : rho ^ 3 = rho + 1) (hQ : Q ^ 4 = Q + 1) (p : ℚ[X]) :
+    (∀ n : ℕ, ∑ k ∈ Finset.range (p.natDegree + 1),
+        p.coeff k • (rho ^ (n + k) * Q ^ (n + k)) = 0)
+      ↔ (X ^ 12 - 3 * X ^ 9 - 2 * X ^ 8 + 2 * X ^ 6 - X ^ 5 - 3 * X ^ 4 - X ^ 3 + X - 1
+          : ℚ[X]) ∣ p :=
+  PDT.RulerRecurrence.product_annihilator_iff hrho hQ p
+
 end PlasticThreshold
 
 /-! ### Axiom audit — every build prints the audit for the compared theorems -/
@@ -91,3 +184,13 @@ end PlasticThreshold
 #print axioms PlasticThreshold.ruler_second_conjugate
 #print axioms PlasticThreshold.ruler_conjugates_eq_embedding_products
 #print axioms PlasticThreshold.ruler_conjugates_card
+#print axioms PlasticThreshold.ruler_unit
+#print axioms PlasticThreshold.rulerPoly_nonreciprocal
+#print axioms PlasticThreshold.ruler_degree_multiplicative
+#print axioms PlasticThreshold.ruler_linearDisjoint
+#print axioms PlasticThreshold.ruler_conjugate_census
+#print axioms PlasticThreshold.ruler_house
+#print axioms PlasticThreshold.ruler_mahler_measure
+#print axioms PlasticThreshold.ruler_mahler_eq_quartic_measure
+#print axioms PlasticThreshold.product_recurrence_charpoly
+#print axioms PlasticThreshold.product_annihilator_iff

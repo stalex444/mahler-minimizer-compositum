@@ -82,7 +82,7 @@ private lemma quartic_pos_unique {a b : ℝ} (ha : a ^ 4 = a + 1) (h1 : 1 < a)
   · linarith [sub_eq_zero.mp h]
   · exact absurd h (ne_of_gt hpos)
 
-/-- The negative real root of the PDT quartic is unique. -/
+/-- The negative real root of the quartic is unique. -/
 private lemma quartic_neg_unique {a b : ℝ} (ha : a ^ 4 = a + 1) (h0 : a < 0)
     (hb : b ^ 4 = b + 1) (h2 : b < 0) : a = b := by
   have ha2 : 0 < a ^ 2 := by nlinarith [mul_pos_of_neg_of_neg h0 h0]
@@ -346,7 +346,7 @@ private lemma map_rulerPoly_factor :
   simp only [eval_mul, eval_sub, eval_X, eval_C]
   exact eval_identity x
 
-/-- The linear factorization of the PDT quartic over `ℂ`. -/
+/-- The linear factorization of the quartic over `ℂ`. -/
 private lemma map_quartic_factor :
     (X ^ 4 - X - 1 : ℚ[X]).map (algebraMap ℚ ℂ)
       = ((X : ℂ[X]) - C ((qq : ℂ))) * (X - C ((nn : ℂ))) * (X - C zc) * (X - C zcb) := by
@@ -499,7 +499,7 @@ theorem exists_psi_root : ∃ x : ℝ, x ^ 4 = x ^ 3 + 1 ∧ 1 < x := by
 
 /-! ### The public theorems -/
 
-/-- **The Mahler measure of the PDT quartic.**  `M(X⁴ − X − 1) = ψ`, where `ψ`
+/-- **The Mahler measure of the quartic.**  `M(X⁴ − X − 1) = ψ`, where `ψ`
 is the real root `> 1` of `ψ⁴ = ψ³ + 1`: the transform `x ↦ −1/x` carries
 `x⁴ − x − 1` to `x⁴ − x³ − 1`, and the quartic's Mahler measure
 `Q·|z|² = −1/r₂` is exactly that root.  This is the degree-4 registry-bridge

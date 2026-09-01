@@ -111,7 +111,7 @@
       "configFile": "lakefile.toml"
     }
   ],
-  "name": "\u00abplastic-number-threshold\u00bb",
+  "name": "\u00abmahler-minimizer-compositum\u00bb",
   "lakeDir": ".lake",
   "fixedToolchain": false
 }

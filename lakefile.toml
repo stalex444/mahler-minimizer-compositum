@@ -1,4 +1,4 @@
-name = "plastic-number-threshold"
+name = "mahler-minimizer-compositum"
 defaultTargets = ["PdtIrreducible", "PdtSalemFamily", "PdtRulerMinpoly", "PdtRulerRecurrence", "PdtRulerCensus", "PdtRulerMeasure", "Challenge", "Solution"]
 
 [[require]]
