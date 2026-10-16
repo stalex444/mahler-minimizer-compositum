@@ -120,7 +120,7 @@ SORRY COUNT (non-comment occurrences): Challenge.lean 22 (one placeholder per co
 NATIVE_DECIDE COUNT: 0 (all files)
 No `axiom`, `opaque`, `admit`, `implemented_by` or `@[extern]` declarations in any source file.
 
-FILES (sha256  lines  name) — regenerated 2026-10-16 (final: module-system headers `module` / `public import` / `@[expose] public section` added to every .lean for the registry's source rule, after preflight run #1 on 23b17f3 failed on exactly that rule; build green; #print axioms standard for all 22 compared names; Challenge vs Solution statements identical 22/22; 22 sorry in Challenge only; no native_decide)
+FILES (sha256  lines  name) — regenerated 2026-10-16 after switching the Mathlib requirement in lakefile.toml from scope = "leanprover-community" to git = "https://github.com/leanprover-community/mathlib4.git" (same pinned revision 065356127b1d; matches lake-manifest.json; build green, no re-resolution) so the registry's definition audit can reach the pinned Mathlib source
   eb6ba5d2c62ec139bda60df4942098e8c620e544c00ecb9f79a6dd248faf6893    521  Challenge.lean
   f5d55defaa0c63d30a09f3be25c5f66421f5da17a421e4b5753a17dc52603f23    248  PdtCoxElt.lean
   57d0f95b10062261b933b98f2c40d6dadee1672ba8321e727104cde90f17bcdb    307  PdtCoxeterBridge.lean
@@ -141,7 +141,7 @@ FILES (sha256  lines  name) — regenerated 2026-10-16 (final: module-system hea
   ee08e5fcfc498eb8f022427e1ba1f4f0fd051d81c06f9ec975279a2cc6001e6a    150  PdtStarDet.lean
   f5f19f2e47c46384497d9db275bb862f8eb6e70674e8cca6b152ef19bb1ee4c9    332  Solution.lean
   b35790c5ded48d275125651564591cd0afe0d306ae42addfab94d61df65feaf9     33  comparator.json
-  30907ce5f7efd86d61c4a10a0bfdee43f7a212dec4cd0a57da8bd0057e576178     64  lakefile.toml
+  9aaace1ab6e96583dbbd4400210d8dfa2e9873140beb420e2f5a4d6dae237661     64  lakefile.toml
   14f65cb44e8c50f7690242950c7ccf40d755a547abe556d6e8abb1a5b27a0c0a    117  lake-manifest.json
   8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a      1  lean-toolchain
   d32be532ae3b0129081943d5ba0140833d203720b69e21bc64c735160db351cb     21  LICENSE
