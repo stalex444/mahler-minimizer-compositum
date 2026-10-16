@@ -145,5 +145,5 @@ FILES (sha256  lines  name) — regenerated 2026-10-16 (final: module-system hea
   14f65cb44e8c50f7690242950c7ccf40d755a547abe556d6e8abb1a5b27a0c0a    117  lake-manifest.json
   8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a      1  lean-toolchain
   d32be532ae3b0129081943d5ba0140833d203720b69e21bc64c735160db351cb     21  LICENSE
-  df9739806830e929562d4990da8c07e2b0293a07998767a571eedf65afd55ec5    252  README.md
-  82879ac9868b97a3569e4e60ac39fd7e60fba390b15d76b831ffa91c069221a9   1149  formalization.yaml
+  83c33713ba1e5a8ed9493928ffbabfb2b252e9033ea52e5b5e3745e05bbfff52    254  README.md
+  b49e3e2c0977573740251aee1e7aa2ddca9dd9152afe25a86cf82c35b7ef291b   1155  formalization.yaml

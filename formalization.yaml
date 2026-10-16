@@ -5,7 +5,7 @@ version: "v0.4"
 # review block below). VERSION 2 of the registered entry
 # PALOMAR-2026-09-01-000005 (version 1: seventeen compared theorems at
 # Lean 4.31.0 / Mathlib fabf563a, registered 2026-09-01). Version 2
-# re-establishes the seventeen byte-for-byte on Lean 4.35.0-rc2 /
+# re-establishes the seventeen, unchanged, on Lean 4.35.0-rc2 /
 # Mathlib 0653561 and adds five (the E_m Coxeter bridge).
 
 project:
@@ -715,8 +715,11 @@ related_formalizations:
     note: >-
       This submission is version 2 of that entry. Compared statements
       (1)-(17) and their proofs are byte-identical to the registered
-      revision; the six version-1 proof modules are byte-identical
-      except for one two-line proof repair in PdtIrreducible (line
+      revision; the six version-1 proof modules are identical to it apart
+      from the module-system header (module / public import /
+      @[expose] public section) that the registry now requires at the
+      top of every Lean file, and one two-line proof repair in
+      PdtIrreducible (line
       145, quartic_irred_zmod2, linear case) forced by the toolchain
       change from Lean 4.31.0 / Mathlib fabf563a to Lean 4.35.0-rc2 /
       Mathlib 0653561 — statement unchanged. Statements (18)-(22) and
@@ -734,7 +737,8 @@ related_formalizations:
       (rho * Q)^2 * M(X^4 - X - 1). The selection of the pair (rho, Q)
       is therefore the literature's and the registry's, not this
       entry's. The module PdtPisotBoundary carried here is
-      byte-identical to the module of the same name in that entry and
+      identical, apart from the module-system header, to the module of
+      the same name in that entry and
       in PALOMAR-2026-09-04-000004 (stalex444/chiral-padovan-histories,
       registered revision 14711e6).
 
@@ -745,7 +749,8 @@ related_formalizations:
       statement (22) writes out verbatim, and whose certificate
       modules PdtSalemCircle, PdtSalemArith, PdtSalemMinus,
       PdtPisotLadder and PdtSalemEndgame are carried here
-      byte-for-byte (they built on Lean 4.35.0-rc2 without repair).
+      unchanged apart from the module-system header (they built on Lean
+      4.35.0-rc2 without repair).
       Statement (22) composes that entry's minus-family trichotomy
       with the bridge (18) and the plastic pattern of the family.
 
@@ -935,7 +940,8 @@ fidelity:
     not formalized — the statements are about this ordered product).
     (vii) The Salem predicate of (22) is written out verbatim from the
     registered Salem entry rather than imported; the certificate
-    modules carried from that entry are byte-identical. (viii)
+    modules carried from that entry are identical apart from the
+    module-system header. (viii)
     PdtSalemPlasticPattern is a trimmed copy of a parent-development
     module (disclosed above); its lines are verbatim and it introduces
     nothing new.

@@ -2,7 +2,7 @@
 
 **Version 2** of the registered entry PALOMAR-2026-09-01-000005 (version 1:
 seventeen compared theorems, Lean 4.31.0). Version 2 re-establishes the
-seventeen statements byte-for-byte on Lean 4.35.0-rc2 / Mathlib
+seventeen statements, unchanged, on Lean 4.35.0-rc2 / Mathlib
 `065356127b1d` and adds five: the **Coxeter bridge**, which identifies the
 spectral half of the entry with the Coxeter-element spectra of the `E_m`
 star trees. Twenty-two compared theorems.
@@ -208,18 +208,20 @@ comparison surface; `formalization.yaml` carries sources,
 classification, and disclosure; `BUILD.txt` is the build and axiom
 record.
 
-Proof modules. Version 1 (byte-identical to the registered revision
-`d78ce16` except one two-line proof repair in `PdtIrreducible` forced
-by the toolchain, statement unchanged): `PdtIrreducible`,
+Proof modules. Version 1 (identical to the registered revision
+`d78ce16` apart from the three-line module-system header that the
+registry now requires at the top of every Lean file, and one two-line
+proof repair in `PdtIrreducible` forced by the toolchain, statement
+unchanged): `PdtIrreducible`,
 `PdtSalemFamily`, `PdtRulerMinpoly`, `PdtRulerCensus`,
 `PdtRulerMeasure`, `PdtRulerRecurrence`. The bridge: `PdtStarDet` (the
 determinant recurrence), `PdtCoxElt` (Coxeter elements of a generalized
 Cartan matrix; Howlett's identity), `PdtCoxeterBridge` (statements
 18–20), `PdtCoxeterSpectral` (statements 21–22). The Salem certificate:
 `PdtSalemCircle`, `PdtSalemArith`, `PdtSalemMinus`, `PdtPisotLadder`,
-`PdtSalemEndgame`, carried byte-for-byte from the registered Salem entry
+`PdtSalemEndgame`, carried unchanged, apart from the module-system header, from the registered Salem entry
 PALOMAR-2026-09-02-000003 ([stalex444/salem-theorem](https://github.com/stalex444/salem-theorem));
-`PdtPisotBoundary`, byte-identical to the module of the same name in
+`PdtPisotBoundary`, identical apart from the module-system header to the module of the same name in
 the registered entries PALOMAR-2026-08-31-000004 (mahler-measure-minima)
 and PALOMAR-2026-09-04-000004 (chiral-padovan-histories, registered
 revision 14711e6); and `PdtSalemPlasticPattern`, a trimmed copy (the
