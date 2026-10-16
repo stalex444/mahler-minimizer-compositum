@@ -2,22 +2,28 @@
 version: "v0.4"
 # Review status: self-assessed by the author, with in-house adversarial
 # mock-referee passes applied to this surface before submission (see the
-# review block below).
+# review block below). VERSION 2 of the registered entry
+# PALOMAR-2026-09-01-000005 (version 1: seventeen compared theorems at
+# Lean 4.31.0 / Mathlib fabf563a, registered 2026-09-01). Version 2
+# re-establishes the seventeen byte-for-byte on Lean 4.35.0-rc2 /
+# Mathlib 0653561 and adds five (the E_m Coxeter bridge).
 
 project:
-  name: "The compositum of the two Mahler minimizers: exact measure, conjugate census, house, and minimal product recurrence, with the Bedford-Kim plastic family and Lehmer's polynomial"
+  name: "The compositum of the two Mahler minimizers: exact measure, conjugate census, house, and minimal product recurrence, with the Bedford-Kim plastic family, Lehmer's polynomial, and the E_m Coxeter bridge"
   description: >-
     Kernel-checked certificates for the multiplicative compositum of
     the two registered Mahler minimizers — rho, the real root of
     x^3 = x + 1 (the plastic number: Smyth's nonreciprocal minimum,
     Siegel's smallest Pisot number) and Q, the real root > 1 of
     x^4 = x + 1 (the degree-4 entry of the minimal-measure tables) —
-    together with the Bedford-Kim spectral family whose limit rho is.
-    Seventeen compared theorems. The spectral half: (1) for n >= 7 the
-    family chi_n(x) = x^(n+1)(x^3 - x - 1) + (x^3 + x^2 - 1) has a
-    canonical root in [117/100, rho), largest below rho, strictly
-    increasing, tending to rho; (2) every chi_n is strictly positive
-    on [rho, infinity); (3) chi_7 = (x - 1) * L exactly, over any
+    together with the Bedford-Kim spectral family whose limit rho is,
+    and (new in version 2) the identification of that family with the
+    Coxeter-element spectra of the E_m star trees. Twenty-two compared
+    theorems. The spectral half: (1) for n >= 7 the family
+    chi_n(x) = x^(n+1)(x^3 - x - 1) + (x^3 + x^2 - 1) has a canonical
+    root in [117/100, rho), largest below rho, strictly increasing,
+    tending to rho; (2) every chi_n is strictly positive on
+    [rho, infinity); (3) chi_7 = (x - 1) * L exactly, over any
     commutative ring, with L Lehmer's degree-10 polynomial; (4) L has
     a root in [117/100, rho). The compositum half, for the degree-12
     minimal polynomial of rho * Q (written out in full in every
@@ -39,7 +45,8 @@ project:
     has modulus strictly below rho * Q; (14) the exact Mahler measure
     M = rho^2 * Q^2 * psi, where psi is the real root > 1 of
     psi^4 = psi^3 + 1; (15) the registry bridge — M(X^4 - X - 1) = psi
-    and M(rulerPoly) = (rho * Q)^2 * M(X^4 - X - 1), re-proving in-repo the quantity pinned in registered entry PALOMAR-2026-08-31-000004;
+    and M(rulerPoly) = (rho * Q)^2 * M(X^4 - X - 1), re-proving in-repo
+    the quantity pinned in registered entry PALOMAR-2026-08-31-000004;
     (16) the order-12 Hadamard product recurrence — the termwise
     product of any solutions of the cubic and quartic shift
     recurrences satisfies the order-12 recurrence whose characteristic
@@ -47,28 +54,63 @@ project:
     (17) the annihilator ideal of the product power sequence
     n |-> (rho * Q)^n is EXACTLY the principal ideal of the degree-12
     polynomial — the classical order <= 3 * 4 bound is an equality,
-    forced by the polynomial's kernel-held irreducibility. The results address three research audiences: the degree problem
-    for products and composita of algebraic numbers (the certified
-    (3,4,12) witness at a canonically distinguished pair, in the
-    field's own unit-product normal form); the Mahler-measure
-    tradition (the measure of the composed product of the two
-    degree-minimal polynomials, in closed form in the second-smallest
-    Pisot number); and composed products of polynomials (a certified
-    rational instance where the finite-field coprimality criterion is
-    unavailable and irreducibility is proved by elimination) — with
-    the Lean audience served by concrete exercise of the
-    Mahler-measure and linear-disjointness APIs. Like the golden
-    ratio, rho * Q is an algebraic unit of norm -1; the compared
-    cofactor identity is that norm computation, certified. No novelty claim is made for the measure identity (the entry is not aware of
-    it in the literature; the claimed contribution is the kernel
-    certificate), no "first formalization" claim is made anywhere,
-    and whether rho is ATTAINED as a dynamical degree is open in the
-    literature — no statement claims it. Hypotheses are inline: rho,
-    Q, psi enter only through their defining equations plus
-    root-selection inequalities, and the compared statements use only
-    core Mathlib vocabulary (Filter.Tendsto, nhds, the complex norm,
-    minpoly, Polynomial.rootSet, Set.ncard, Polynomial.mahlerMeasure,
-    IntermediateField adjoin/sup, Module.finrank, Finset.range sums) —
+    forced by the polynomial's kernel-held irreducibility. THE COXETER
+    BRIDGE (version 2), for the star trees E_m = T(2,3,m-3) with
+    generalized Cartan matrix A given entrywise and Coxeter element
+    c = s_0 s_1 ... s_{m-1}, each simple reflection the matrix
+    s_i = 1 - e_i e_i^T A of the geometric representation: (18) for
+    every m >= 4, (X - 1) * charpoly(c) = X^(m-2)(X^3 - X - 1) +
+    (X^3 + X^2 - 1) — the classical E_n Coxeter-polynomial identity
+    (recorded in Gross-Hironaka-McMullen 2009, Section 1, and proved
+    there as Cor. 4.3 for n >= 4), whose right-hand side is chi_{m-3}: the spectral half of this entry IS
+    the E_m Coxeter spectrum; (19) with the E_10 Cartan matrix written
+    out, the Coxeter polynomial of E_10 is Lehmer's polynomial; (20)
+    for every m >= 10 the Coxeter polynomial of E_m has a root
+    lambda_m in [117/100, rho) with no real root above it, the
+    lambda_m strictly increasing and tending to rho; (21) for every
+    m >= 10 the complexified Coxeter element has an eigenvalue
+    lambda in (1, rho) and every complex eigenvalue is unimodular,
+    lambda, or 1/lambda; (22) that lambda dominates the modulus of
+    every eigenvalue and is a Salem number, for every m >= 10, with
+    the Salem predicate written out as in the registered entry
+    PALOMAR-2026-09-02-000003. Two disclosures of version 1 are
+    discharged by (21)-(22) for n >= 7: the Salem property of the
+    Bedford-Kim roots is now kernel-held, and the interval
+    (1, 117/100) is now swept (the only eigenvalues off the unit circle
+    are lambda_m and its inverse). The results address four research
+    audiences: the degree problem for products and composita of
+    algebraic numbers (the certified (3,4,12) witness at a canonically
+    distinguished pair, in the field's own unit-product normal form);
+    the Mahler-measure tradition (the measure of the composed product
+    of the two degree-minimal polynomials, in closed form in the
+    second-smallest Pisot number); composed products of polynomials (a
+    certified rational instance where the finite-field coprimality
+    criterion is unavailable and irreducibility is proved by
+    elimination); and, new, Coxeter groups and Salem numbers
+    (McMullen; Gross-Hironaka-McMullen; Hironaka's Lehmer program): the
+    E_m Coxeter spectra, their Salem radii and their limit rho as one
+    kernel-checked family — with the Lean audience served by concrete
+    exercise of the Mahler-measure, linear-disjointness,
+    Matrix.charpoly and spectrum APIs. Like the golden ratio, rho * Q
+    is an algebraic unit of norm -1; the compared cofactor identity is
+    that norm computation, certified. No novelty claim is made for the
+    measure identity (the entry is not aware of it in the literature;
+    the claimed contribution is the kernel certificate), none for the
+    mathematics of (18)-(22), which is classical (the claimed
+    contribution is the kernel-checked bridge from the registered
+    Bedford-Kim family to the E_m Coxeter elements, for every m >= 4
+    (bridge) and every m >= 10 (spectrum, Salem) at once),
+    no "first formalization" claim is made anywhere, and whether rho
+    is ATTAINED as a dynamical degree is open in the literature — no
+    statement claims it. Hypotheses are inline: rho, Q, psi enter only
+    through their defining equations plus root-selection inequalities,
+    the E_m Cartan matrices only through their entries, and the
+    compared statements use only core Mathlib vocabulary
+    (Filter.Tendsto, nhds, the complex norm, minpoly,
+    Polynomial.rootSet, Set.ncard, Polynomial.mahlerMeasure,
+    IntermediateField adjoin/sup, Module.finrank, Finset.range sums,
+    Matrix.charpoly, Matrix.diagonal, List.finRange/List.prod, matrix
+    literals, Matrix.map, spectrum, IsIntegral, Polynomial.aeval) —
     zero custom definitions. The name prefix "ruler" in statement
     names is the source project's term for the product rho * Q;
     nothing in any statement depends on it.
@@ -79,8 +121,8 @@ project:
     - "Stephanie Alexander"
 
 classification:
-  arxiv: ["math.NT", "math.DS"]
-  msc2020: ["11R06", "11R04", "11B37", "14E07", "37B40"]
+  arxiv: ["math.NT", "math.DS", "math.GR", "math.RT"]
+  msc2020: ["11R06", "11R04", "11B37", "14E07", "37B40", "20F55", "15A18"]
 
 sources:
   - title: "Dynamics of rational surface automorphisms: linear fractional recurrences"
@@ -104,11 +146,82 @@ sources:
       of t^3 = t + 1 (verbatim: "the lambda_n increase to delta-star
       as n -> infinity", delta-star that root — the plastic number). This
       entry formalizes the SPECTRAL half: the canonical largest roots
-      below rho, their strict increase, and the convergence to rho. The
-      dynamical realization (that lambda_n is the entropy/spectral
-      radius of an automorphism), the Salem property of the roots, and
-      the absence of roots in (1, 117/100) are NOT formalized — they
-      are the paper's geometric content, cited here.
+      below rho, their strict increase, and the convergence to rho; in
+      version 2 also (via statements (21)-(22), for n >= 7) the Salem
+      property of the roots and the absence of roots in (1, 117/100).
+      The dynamical realization (that lambda_n is the entropy/spectral
+      radius of an automorphism) is NOT formalized — it is the paper's
+      geometric content, cited here.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Cyclotomic factors of Coxeter polynomials"
+    authors:
+      - "Benedict H. Gross"
+      - "Eriko Hironaka"
+      - "Curtis T. McMullen"
+    id: "Journal of Number Theory 129 (2009), no. 5, 1034-1043"
+    # Crossref-verified 2026-10-16 (lit-scout, full text read): DOI
+    # 10.1016/j.jnt.2008.09.021; J. Number Theory 129, 1034-1043.
+    type: "article"
+    location: "https://doi.org/10.1016/j.jnt.2008.09.021"
+    relationship: "formalizes"
+    note: >-
+      Section 1 records, for the E_n diagram (n >= 3), the classical
+      identity (x - 1) E_n(x) = x^(n-2)(x^3 - x - 1) + (x^3 + x^2 - 1)
+      for the Coxeter polynomial E_n(x) = charpoly of the Coxeter
+      element, with references (McKee-Rowlinson-Smyth 1999, Lemma 5;
+      Hironaka), proves it as Corollary 4.3 for n >= 4 — exactly the
+      compared range m >= 4; the n = 3 case (E_3 = A_2 + A_1) is outside
+      (18) — and records that E_10 is Lehmer's polynomial. Compared
+      statement (18) is that identity, kernel-checked for every m >= 4
+      with the Cartan matrix given entrywise; (19) is the E_10 instance.
+      The identity is not the paper's; the paper's own results on
+      cyclotomic factors and the number of roots on the unit circle are
+      not formalized.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Coxeter groups, Salem numbers and the Hilbert metric"
+    authors:
+      - "Curtis T. McMullen"
+    id: "Publications Mathematiques de l'IHES 95 (2002), 151-183"
+    # Crossref-verified 2026-10-16: DOI 10.1007/s102400200001; Publ.
+    # Math. IHES 95 (2002) 151-183.
+    type: "article"
+    location: "https://doi.org/10.1007/s102400200001"
+    relationship: "background"
+    note: >-
+      Proposition 7.1: for a hyperbolic crystallographic Coxeter
+      system, every w in W with spectral radius lambda(w) > 1 has
+      lambda(w) a Salem number of degree at most |S| (in the proof, w
+      has exactly the two eigenvalues lambda and 1/lambda off the unit
+      circle); E_m is hyperbolic and crystallographic for m >= 10.
+      Theorem 7.6 and its corollaries classify the
+      Coxeter systems whose Coxeter-element spectral radius lies below
+      the plastic number: the E_n = Y_{2,3,n-3} ladder and Y_{2,4,5},
+      with the E_n values rising to rho and E_10 = Lehmer's number the
+      minimum. Compared statements (20)-(22) are the kernel-checked
+      E_m case of that picture (the Salem property for every m >= 10,
+      the strict increase, the limit rho); the classification of ALL
+      systems below rho is cited, not formalized.
+    license: "unknown"
+    author_endorsement: "n/a"
+  - title: "Coxeter groups and M-matrices"
+    authors:
+      - "Robert B. Howlett"
+    id: "Bulletin of the London Mathematical Society 14 (1982), 137-141"
+    # Crossref-verified 2026-10-16: DOI 10.1112/blms/14.2.137; Bull.
+    # LMS 14, 137-141 (1982).
+    type: "article"
+    location: "https://doi.org/10.1112/blms/14.2.137"
+    relationship: "background"
+    note: >-
+      Theorem 2.1: the identity expressing the Coxeter element through
+      the unipotent upper part U of the Cartan matrix (c = -U^{-1} U^T
+      in the symmetric case; here used as U * c = U - A), on which the
+      determinant recurrence of statement (18) rests. The identity is
+      re-proved in-repo (module PdtCoxElt, U_mul_cox, by a list
+      induction, for an arbitrary square matrix — symmetry and the
+      diagonal 2 enter only in charpoly_cox); cited for attribution.
     license: "unknown"
     author_endorsement: "n/a"
   - title: "On the product of the conjugates outside the unit circle of an algebraic integer"
@@ -180,9 +293,10 @@ sources:
       2.7(3)). The compared factorization chi_7 = (x - 1) * L places
       Lehmer's polynomial exactly at the n = 7 member of the plastic
       family; the compared root statement locates a root of L in
-      [117/100, rho). Lehmer's minimality theorems are not formalized
-      here. Lehmer's problem is the tradition the minimal-measure
-      tables serve.
+      [117/100, rho); compared statement (19) exhibits it as the
+      Coxeter polynomial of E_10. Lehmer's minimality theorems are not
+      formalized here. Lehmer's problem is the tradition the
+      minimal-measure tables serve.
     license: "unknown"
     author_endorsement: "n/a"
   - title: "Polynomials with small Mahler measure"
@@ -557,7 +671,8 @@ sources:
       this entry's chi family divided by (t - 1) (index shift: McMullen's n is this entry's n + 3, so his Q_10 is the n = 7 member) — with the remark that
       Q_10 coincides with Lehmer's polynomial: the compared
       factorization chi_7 = (x - 1) * L is the kernel certificate of
-      that remark.
+      that remark, and compared statement (18) is the kernel
+      certificate of eq (2.4) itself for every n.
     license: "unknown"
     author_endorsement: "n/a"
   - title: "Salem/Pisot Numbers in the Weyl Spectrum"
@@ -579,20 +694,33 @@ sources:
     author_endorsement: "n/a"
 
 related_formalizations:
-  - id: "https://github.com/leanprover-community/mathlib4 (intermediate value theorem, sSup/compactness, monotone convergence, Filter.Tendsto, complex norm, minpoly, rootSet, Set.ncard, Polynomial.mahlerMeasure, IntermediateField, LinearDisjoint)"
+  - id: "https://github.com/leanprover-community/mathlib4 (intermediate value theorem, sSup/compactness, monotone convergence, Filter.Tendsto, complex norm, minpoly, rootSet, Set.ncard, Polynomial.mahlerMeasure, IntermediateField, LinearDisjoint, Matrix.charpoly, spectrum)"
     relationship: "builds-on"
     note: >-
       The compared statements use only core Mathlib vocabulary — zero
       custom definitions on the compared surface. Mathlib contains no
-      Salem numbers, no Lehmer polynomial, no Pisot theory, and no
-      Hadamard-product theory for linear recurrences (checked at the
-      pin): the family, the compositum certificates, the census, the
-      exact measure evaluations, and the minimal product recurrence
-      are this entry's contribution. Mathlib's
-      Polynomial.mahlerMeasure and
-      IntermediateField.LinearDisjoint.of_finrank_coprime are consumed
-      (the latter disclosed as near-automating the disjointness half
-      of statement (11)).
+      Salem numbers, no Lehmer polynomial, no Pisot theory, no
+      Coxeter elements or Coxeter polynomials of generalized Cartan
+      matrices, and no Hadamard-product theory for linear recurrences
+      (checked at the pin): the family, the compositum certificates,
+      the census, the exact measure evaluations, the minimal product
+      recurrence, and the Coxeter bridge are this entry's
+      contribution. Mathlib's Polynomial.mahlerMeasure,
+      IntermediateField.LinearDisjoint.of_finrank_coprime (disclosed as
+      near-automating the disjointness half of statement (11)),
+      Matrix.charpoly and spectrum are consumed.
+
+  - id: "Registered entry PALOMAR-2026-09-01-000005, version 1 (stalex444/mahler-minimizer-compositum, registered revision d78ce1610608cf4a90d5580c267110c96d2f9af5)"
+    relationship: "other"
+    note: >-
+      This submission is version 2 of that entry. Compared statements
+      (1)-(17) and their proofs are byte-identical to the registered
+      revision; the six version-1 proof modules are byte-identical
+      except for one two-line proof repair in PdtIrreducible (line
+      145, quartic_irred_zmod2, linear case) forced by the toolchain
+      change from Lean 4.31.0 / Mathlib fabf563a to Lean 4.35.0-rc2 /
+      Mathlib 0653561 — statement unchanged. Statements (18)-(22) and
+      their modules are new.
 
   - id: "Registered entry PALOMAR-2026-08-31-000004 (stalex444/mahler-measure-minima, registered revision ca3df22)"
     relationship: "other"
@@ -605,26 +733,45 @@ related_formalizations:
       4). Compared statement (15) re-proves that entry's degree-4 quantity in-repo as the left conjunct of (15); the values match: M(X^4 - X - 1) = psi and M(rulerPoly) =
       (rho * Q)^2 * M(X^4 - X - 1). The selection of the pair (rho, Q)
       is therefore the literature's and the registry's, not this
-      entry's.
+      entry's. The module PdtPisotBoundary carried here is
+      byte-identical to the module of the same name in that entry and
+      in PALOMAR-2026-09-04-000004 (stalex444/chiral-padovan-histories,
+      registered revision 14711e6).
+
+  - id: "Registered entry PALOMAR-2026-09-02-000003 (stalex444/salem-theorem)"
+    relationship: "other"
+    note: >-
+      The registered Salem entry whose Salem predicate compared
+      statement (22) writes out verbatim, and whose certificate
+      modules PdtSalemCircle, PdtSalemArith, PdtSalemMinus,
+      PdtPisotLadder and PdtSalemEndgame are carried here
+      byte-for-byte (they built on Lean 4.35.0-rc2 without repair).
+      Statement (22) composes that entry's minus-family trichotomy
+      with the bridge (18) and the plastic pattern of the family.
 
   - id: "https://github.com/stalex444/pdt-lean (parent development; pinned: commit d66ffbe813e48636aa636ffcd80070b81cbf10da)"
     relationship: "other"
     note: >-
       The broader public project this entry belongs to. This repository
       is the complete, self-contained proof development for the
-      compared statements, not a wrapper: all six proof modules build
+      compared statements, not a wrapper: every proof module builds
       here with the pinned toolchain and no imports from the parent.
-      PdtIrreducible, PdtSalemFamily, and PdtRulerMinpoly descend from
+      PdtIrreducible, PdtSalemFamily and PdtRulerMinpoly descend from
       material in the parent development at the pinned revision;
-      PdtRulerCensus, PdtRulerMeasure, and PdtRulerRecurrence (with
-      the compositum extensions of PdtRulerMinpoly (unit, nonreciprocity, degree multiplicativity, sup form, linear disjointness): unit, nonreciprocity,
-      degree multiplicativity, compositum sup form, linear
-      disjointness) are native to this repository and appear in no
-      other development.
+      PdtRulerCensus, PdtRulerMeasure and PdtRulerRecurrence are native
+      to this repository; PdtStarDet, PdtCoxElt, PdtCoxeterBridge and
+      PdtCoxeterSpectral were written for version 2 and appear in no
+      other development; PdtSalemPlasticPattern is a trimmed copy (the
+      plastic-pattern lines only, verbatim, plus rho_real_root_unique
+      copied verbatim from PdtMahlerWindow of the public parent) of a
+      module of the author's unpublished development — the source
+      module is not public, so the trim is disclosed rather than
+      externally checkable; every line of it is kernel-checked in this
+      build, and the trim is stated in its docstring.
 
 status:
   scope: >-
-    Formalized, 17 compared theorems, hypotheses inline. (1)
+    Formalized, 22 compared theorems, hypotheses inline. (1)
     plastic_salem_family: existence of the canonical root sequence of
     chi_n in [117/100, rho) for n >= 7 — largest below rho, strictly
     increasing, tending to rho. (2) family_pos_of_rho_le: chi_n > 0 on
@@ -655,19 +802,38 @@ status:
     recurrence with the degree-12 characteristic polynomial. (17)
     product_annihilator_iff: a rational polynomial annihilates the
     product power sequence iff the degree-12 polynomial divides it.
+    (18) coxeter_E_bridge: for every m >= 4 and the E_m Cartan matrix
+    A given entrywise, (X - 1) * charpoly(s_0 ... s_{m-1}) =
+    X^(m-2)(X^3 - X - 1) + (X^3 + X^2 - 1). (19) coxeter_E10_lehmer:
+    with the E_10 Cartan matrix as a 10 x 10 literal, charpoly of the
+    Coxeter element = Lehmer's polynomial. (20) coxeter_E_plastic: a
+    sequence lambda_m, m >= 10, each in [117/100, rho), a root of the
+    E_m Coxeter polynomial with no real root above it, strictly
+    increasing, tending to rho. (21) coxeter_E_spectrum: for every
+    m >= 10 an eigenvalue lambda in (1, rho) of the complexified
+    Coxeter element, with every eigenvalue unimodular, lambda, or
+    1/lambda. (22) coxeter_E_salem: for every m >= 10 an eigenvalue
+    lambda in (1, rho) dominating every eigenvalue's modulus that is a
+    Salem number (algebraic integer > 1, conjugates in the closed unit
+    disk, at least one on the circle, 1/lambda a conjugate).
     NOT formalized (cited): the dynamical realization of the roots as
-    automorphism entropies; the Salem property; the emptiness of
-    (1, 117/100); the Blanc-Cantat classification; Smyth's and
-    Siegel's minimality theorems; the minimality of the pair (rho, Q)
-    itself, kernel-certified in the registered sibling entry
-    PALOMAR-2026-08-31-000004. No physical claim is part of the
-    compared statements.
+    automorphism entropies; the Blanc-Cantat classification; Smyth's
+    and Siegel's minimality theorems; McMullen's classification of ALL
+    Coxeter systems with spectral radius below rho (only the E_m case
+    is kernel-held); the minimality of the pair (rho, Q) itself,
+    kernel-certified in the registered sibling entry
+    PALOMAR-2026-08-31-000004. FORMALIZED IN VERSION 2 where version 1
+    cited: the Salem property of the Bedford-Kim roots for n >= 7
+    (statements (18), (22); module coxeter_E_salem) and the absence of
+    roots of chi_n in (1, 117/100) for n >= 7 (statements (18), (20),
+    (21)). No physical claim is part
+    of the compared statements.
   sorry_count: 0
   sorry_in_definitions: 0
   axioms: ["propext", "Classical.choice", "Quot.sound"]
   # Every compared theorem's #print axioms output is at most
-  # [propext, Classical.choice, Quot.sound]; lehmer_first_rung and
-  # ruler_unit need propext and Quot.sound only.
+  # [propext, Classical.choice, Quot.sound]; re-elaborated 2026-10-16
+  # on Lean 4.35.0-rc2 for all 22 (BUILD.txt).
 
 automation:
   methods:
@@ -678,14 +844,18 @@ automation:
         AI-assisted proof drafting and error-loop iteration against
         lake build; every compared declaration kernel-checked and
         axiom-audited (#print axioms: propext, Classical.choice,
-        Quot.sound; the factorization and the unit certificate need
-        propext and Quot.sound only). The proof skeleton was
-        numerically pre-verified (sympy, exact rational arithmetic
-        where stated) before formalization.
+        Quot.sound). The proof skeleton was numerically pre-verified
+        (sympy, exact rational arithmetic where stated) before
+        formalization. Version 2: the port to Lean 4.35.0-rc2 and the
+        bridge modules were produced by an Anthropic Claude Opus-class
+        lean-loop agent (14 compiler builds, 2026-10-16) from a scratch
+        development of 2026-10-15; the bridge identity and the E_10
+        instance were checked against the Coxeter-element spectra by
+        exact computation before formalization.
       cost:
-        wall_time: "one session, 2026-08-25 (kernel closure of the spectral half); the ruler-conjugates statements (6)-(7) added 2026-08-29; the compositum statements (8)-(17) and their proof modules 2026-08-30 through 2026-08-31"
+        wall_time: "version 1: one session, 2026-08-25 (kernel closure of the spectral half); the ruler-conjugates statements (6)-(7) added 2026-08-29; the compositum statements (8)-(17) and their proof modules 2026-08-30 through 2026-08-31. Version 2: the bridge scratch development 2026-10-15; port and bridge modules 2026-10-16, about two hours"
         spend_usd: "subscription-based"
-        hardware: "remote development container"
+        hardware: "remote development container (version 1); local machine, Apple silicon (version 2)"
       prompting_notes: >-
         Statements fixed from the source papers and the significance
         panel's plan first; proofs iterated against the compiler gate
@@ -693,7 +863,10 @@ automation:
         canonicity, the monotone step, the power-blowup limit, the
         Vieta factorization witness, the census distinctness matrix,
         the mahlerMeasure root-product collapse, the annihilator
-        divisibility argument).
+        divisibility argument; for version 2, the determinant
+        recurrence along the long arm, Howlett's identity by list
+        induction, and the composition with the registered Salem
+        entry's trichotomy).
     - method: "manual"
       models: []
       framework: "n/a"
@@ -718,23 +891,23 @@ fidelity:
     parameters the maps are automorphisms of rational surfaces with
     entropy log lambda_n, lambda_n a Salem number, and the lambda_n
     increase to the plastic number. This entry formalizes the spectral
-    statement about the polynomial family only: the canonical largest
-    roots below rho, their strict increase, and the limit. The
-    dynamical realization, the Salem property of the roots, and the
-    absence of further roots in (1, 117/100) are cited, not formalized
-    — so "the canonical root below rho" here corresponds to the paper's
-    spectral radius via the cited factorization. The exclusion
-    corollary for rho * Q (not a birational surface dynamical degree)
-    additionally requires the cited Blanc-Cantat classification; the
-    identification of the products of embeddings as the conjugates of
-    rho * Q is NOT cited but formalized here, as statements (6) and
-    (7). All finite margin claims are exact: the brackets are rational
-    and kernel-decided; no floating point enters any compared
-    statement or proof. Four further disclosures on the compositum
-    half. (i) Internal Vieta closed forms are carried division-free
-    (e.g. Q * r2 * |z|^2 = -1 rather than |z|^2 = -1/(Q * r2)); the
-    compared statements are unaffected. (ii) The linear-disjointness
-    half of statement (11) is near-automatic from Mathlib's
+    statement about the polynomial family: the canonical largest roots
+    below rho, their strict increase, and the limit (version 1), and
+    now, through the Coxeter bridge, the Salem property of those roots
+    and the emptiness of (1, 117/100) for n >= 7 (version 2, statements
+    (21)-(22)). The dynamical realization remains cited, not
+    formalized. The exclusion corollary for rho * Q (not a birational
+    surface dynamical degree) additionally requires the cited
+    Blanc-Cantat classification; the identification of the products
+    of embeddings as the conjugates of rho * Q is NOT cited but
+    formalized here, as statements (6) and (7). All finite margin
+    claims are exact: the brackets are rational and kernel-decided; no
+    floating point enters any compared statement or proof. Four
+    disclosures on the compositum half. (i) Internal Vieta closed
+    forms are carried division-free (e.g. Q * r2 * |z|^2 = -1 rather
+    than |z|^2 = -1/(Q * r2)); the compared statements are unaffected.
+    (ii) The linear-disjointness half of statement (11) is
+    near-automatic from Mathlib's
     IntermediateField.LinearDisjoint.of_finrank_coprime given the
     kernel-held degrees 3 and 4; the substantive content is the
     sup-equality. (iii) psi enters statements (14)-(15) only through
@@ -747,7 +920,25 @@ fidelity:
     for every not-identically-zero product of solutions; the classical
     order <= 3 * 4 bound is certified an equality at that canonical
     member, which is what the minimal-polynomial identification
-    supports without additional nonvanishing hypotheses.
+    supports without additional nonvanishing hypotheses. Four
+    disclosures on the Coxeter bridge. (v) Challenge.lean imports
+    Mathlib only, so the E_m Cartan matrix is supplied entrywise
+    through a hypothesis hA and the Coxeter element is written inline
+    as the ordered product of the matrices 1 - e_i e_i^T A; the node
+    ordering is long arm first (nodes 0..m-5), centre m-4, then the
+    one-edge arm m-3 and the two-edge arm m-2, m-1 — the E_10 literal
+    of (19) is therefore not in Bourbaki order (a relabelling; the
+    Coxeter polynomial is independent of it, and the docstrings state
+    the ordering). (vi) The Coxeter element is the product in the
+    order s_0 s_1 ... s_{m-1}; for a tree all Coxeter elements are
+    conjugate, so the charpoly is the same for any order (classical;
+    not formalized — the statements are about this ordered product).
+    (vii) The Salem predicate of (22) is written out verbatim from the
+    registered Salem entry rather than imported; the certificate
+    modules carried from that entry are byte-identical. (viii)
+    PdtSalemPlasticPattern is a trimmed copy of a parent-development
+    module (disclosed above); its lines are verbatim and it introduces
+    nothing new.
 
 review:
   status: "self-assessed"
@@ -755,15 +946,25 @@ review:
     - "Stephanie Alexander"
   notes: >-
     Statements audited by the author against the source papers; the
-    kernel and the axiom audit are the acceptance criteria. Three
-    in-house adversarial passes, each automated (AI-assisted:
-    Anthropic Claude, in Claude Code, under the author's direction),
-    were applied to this surface: a mock-referee pass on the original
-    seven-theorem surface (2026-08-25, re-run 2026-08-30); a four-lens
-    significance panel on the compositum extension — three independent
-    research-framing reviews plus an adversarial judge, whose
-    recommended plan this surface implements, including the corrected
-    bibliography (2026-08-31); and an assembly pass on the extended seventeen-theorem surface (2026-08-31).
+    kernel and the axiom audit are the acceptance criteria. Version 1:
+    three in-house adversarial passes, each automated (AI-assisted:
+    Anthropic Claude, in Claude Code, under the author's direction) —
+    a mock-referee pass on the original seven-theorem surface
+    (2026-08-25, re-run 2026-08-30); a four-lens significance panel on
+    the compositum extension (2026-08-31); an assembly pass on the
+    seventeen-theorem surface (2026-08-31) — and the registry's own
+    automated review of version 1 (no blocking problems, zero
+    comments, registered 2026-09-01). Version 2: the port was
+    re-verified independently of the porting agent (build green,
+    axioms re-elaborated for all 22 compared declarations, Challenge
+    and Solution statements checked term-identical 22/22), and the
+    bridge identity (18) and the E_10 instance (19) were checked by
+    exact computation against the Coxeter-element spectra before
+    formalization; a mock-referee pass on the version-2 surface
+    (2026-10-16, hostile, AI-assisted) was applied before submission,
+    and its findings — a stale version-1 disclosure in the scope
+    docstring, a stale file hash, and attribution and scope wording —
+    were resolved.
 
 alignment:
   namespace: "PlasticThreshold"
@@ -896,10 +1097,53 @@ alignment:
         particular no nonzero recurrence of order < 12, so the
         classical order <= 3 * 4 bound is an equality at the canonical
         member.
+    - source: "classical E_n Coxeter-polynomial identity (recorded in Gross-Hironaka-McMullen 2009, Section 1, proved there as Cor. 4.3 for n >= 4, citing McKee-Rowlinson-Smyth 1999 Lemma 5); McMullen 2007 eq (2.4); Howlett 1982 Thm 2.1 for the determinant route"
+      lean: "PlasticThreshold.coxeter_E_bridge"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        For every m >= 4 and the E_m generalized Cartan matrix given
+        entrywise, (X - 1) * charpoly(s_0 ... s_{m-1}) =
+        X^(m-2)(X^3 - X - 1) + (X^3 + X^2 - 1): the spectral half of
+        this entry is the E_m Coxeter spectrum.
+    - source: "classical (Gross-Hironaka-McMullen 2009 Section 1; McMullen 2002): the Coxeter polynomial of E_10 is Lehmer's"
+      lean: "PlasticThreshold.coxeter_E10_lehmer"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        With the E_10 Cartan matrix written out as a 10 x 10 literal
+        (long-arm-first node order), the characteristic polynomial of
+        the Coxeter element is Lehmer's degree-10 polynomial.
+    - source: "McMullen 2002, Section 7 (the E_n ladder rising to the plastic number); composition of (18) with (1)"
+      lean: "PlasticThreshold.coxeter_E_plastic"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        For every m >= 10 the E_m Coxeter polynomial has a root
+        lambda_m in [117/100, rho) with no real root above it; the
+        lambda_m increase strictly and tend to rho.
+    - source: "McMullen 2002, Prop. 7.1 (for hyperbolic crystallographic Coxeter systems: the spectrum of an element of spectral radius above 1 is unimodular except lambda and 1/lambda), the E_m case; composition of (18) with the registered Salem entry's trichotomy"
+      lean: "PlasticThreshold.coxeter_E_spectrum"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        For every m >= 10 the complexified Coxeter element has an
+        eigenvalue lambda in (1, rho), and every complex eigenvalue is
+        unimodular, lambda, or 1/lambda.
+    - source: "McMullen 2002, Prop. 7.1 (for hyperbolic crystallographic Coxeter systems, spectral radii above 1 are Salem numbers), the E_m case, m >= 10; Salem predicate as in PALOMAR-2026-09-02-000003"
+      lean: "PlasticThreshold.coxeter_E_salem"
+      module: "Solution"
+      status: "proved"
+      note: >-
+        For every m >= 10 the dominant eigenvalue lambda in (1, rho) is
+        a Salem number: an algebraic integer > 1 with all other
+        conjugates in the closed unit disk, at least one on the unit
+        circle, and 1/lambda among them.
 
 acknowledgements: >-
   Built on Mathlib and the Lean 4 toolchain — in particular the
   intermediate value theorem, order-compactness, monotone convergence,
-  minpoly/rootSet, Mahler measure, and IntermediateField machinery;
-  thanks to the leanprover community. Developed with AI assistance
-  (Anthropic Claude, in Claude Code) under the author's direction.
+  minpoly/rootSet, Mahler measure, IntermediateField, Matrix.charpoly
+  and spectrum machinery; thanks to the leanprover community.
+  Developed with AI assistance (Anthropic Claude, in Claude Code) under
+  the author's direction.

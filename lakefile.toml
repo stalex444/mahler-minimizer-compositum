@@ -1,10 +1,10 @@
-name = "mahler-minimizer-compositum"
-defaultTargets = ["PdtIrreducible", "PdtSalemFamily", "PdtRulerMinpoly", "PdtRulerRecurrence", "PdtRulerCensus", "PdtRulerMeasure", "Challenge", "Solution"]
+name = "plastic_number_threshold"
+defaultTargets = ["PdtIrreducible", "PdtSalemFamily", "PdtRulerMinpoly", "PdtRulerRecurrence", "PdtRulerCensus", "PdtRulerMeasure", "PdtStarDet", "PdtCoxElt", "PdtCoxeterBridge", "PdtSalemCircle", "PdtSalemArith", "PdtSalemMinus", "PdtPisotLadder", "PdtSalemEndgame", "PdtPisotBoundary", "PdtSalemPlasticPattern", "PdtCoxeterSpectral", "Challenge", "Solution"]
 
 [[require]]
 name = "mathlib"
 scope = "leanprover-community"
-rev = "fabf563a7c95a166b8d7b6efca11c8b4dc9d911f"
+rev = "065356127b1dc0016f66b7283ce0ce2c4055aa55"
 
 [[lean_lib]]
 name = "PdtIrreducible"
@@ -25,8 +25,40 @@ name = "PdtRulerCensus"
 name = "PdtRulerMeasure"
 
 [[lean_lib]]
+name = "PdtStarDet"
+
+[[lean_lib]]
+name = "PdtCoxElt"
+
+[[lean_lib]]
+name = "PdtCoxeterBridge"
+
+[[lean_lib]]
+name = "PdtSalemCircle"
+
+[[lean_lib]]
+name = "PdtSalemArith"
+
+[[lean_lib]]
+name = "PdtSalemMinus"
+
+[[lean_lib]]
+name = "PdtPisotLadder"
+
+[[lean_lib]]
+name = "PdtSalemEndgame"
+
+[[lean_lib]]
+name = "PdtPisotBoundary"
+
+[[lean_lib]]
+name = "PdtSalemPlasticPattern"
+
+[[lean_lib]]
+name = "PdtCoxeterSpectral"
+
+[[lean_lib]]
 name = "Challenge"
 
 [[lean_lib]]
 name = "Solution"
-

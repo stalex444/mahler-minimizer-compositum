@@ -142,7 +142,8 @@ lemma quartic_irred_zmod2 : Irreducible (X ^ 4 + X + 1 : (ZMod 2)[X]) := by
     -- p has root -a
     have : p.IsRoot (-a) := by
       rw [IsRoot.def, hr, eval_mul, heq]
-      simp only [eval_add, eval_X, eval_C, neg_add_cancel, zero_mul]
+      simp only [eval_add, eval_X, eval_C]
+      exact mul_eq_zero_of_left (neg_add_cancel a) _
     rw [hp] at this
     exact quartic_no_root_zmod2 _ this
   · -- natDegree q = 2

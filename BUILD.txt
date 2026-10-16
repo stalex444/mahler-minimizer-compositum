@@ -1,0 +1,149 @@
+BUILD RECORD — plastic-number-threshold v2 (candidate version 2 of PALOMAR-2026-09-01-000005)
+Generated 2026-10-16 by the porting agent. Package dir: ~/palomar-entries/plastic-number-threshold-v2
+The registered v1 package (~/palomar-entries/plastic-number-threshold, git d78ce16) was not modified.
+
+TOOLCHAIN
+  lean-toolchain : leanprover/lean4:v4.35.0-rc2
+  lean --version : Lean (version 4.35.0-rc2, arm64-apple-darwin24.6.0, commit 11acb17ec6b07a8f9e9173e6845197929540936b, Release)
+  Mathlib rev    : 065356127b1dc0016f66b7283ce0ce2c4055aa55
+  lake-manifest (package name "plastic_number_threshold"):
+  mathlib          065356127b1dc0016f66b7283ce0ce2c4055aa55
+  plausible        e50948299c4dc4a4c21b1c34b6a6a4fddc19f912
+  LeanSearchClient 95e037bfdc31d3916ac615446847fb01960e2719
+  importGraph      10930f8138f0462dbd744a91fc03a16fae0e046f
+  proofwidgets     4c70ac059693669e5756e32a7a94b57ee1e99dc5
+  aesop            75d936c7af167cc93fac0d31237682fc2204591d
+  Qq               786b7acdca7eb4e9c76c5d1d5bd810e7e5c56334
+  batteries        ed9b316aabe389fec1ef43c3326ab48c7e59be42
+  Cli              2842b9871b04862f944c032e34052cb9448ccb71
+  Build method: `lake build` in the package directory, with .lake/packages a symlink to
+  ~/palomar-entries/coxeter-growth/.lake/packages (Lake accepted the symlink; no Mathlib
+  download, no `lake update`). .lake/build was created fresh in this session, so every
+  .olean was produced by 4.35.0-rc2 from the current sources.
+
+BUILD RESULT (final `lake build`, all defaultTargets): Build completed successfully (8968 jobs)
+  ℹ [8931/8968] Replayed PdtIrreducible
+  ℹ [8935/8968] Replayed PdtRulerMinpoly
+  ℹ [8937/8968] Replayed PdtRulerRecurrence
+  ℹ [8939/8968] Replayed PdtRulerCensus
+  ℹ [8941/8968] Replayed PdtRulerMeasure
+  ⚠ [8949/8968] Replayed PdtSalemCircle
+  ⚠ [8951/8968] Replayed PdtSalemArith
+  ⚠ [8953/8968] Replayed PdtSalemMinus
+  ⚠ [8957/8968] Replayed PdtSalemEndgame
+  ℹ [8959/8968] Replayed PdtPisotBoundary
+  ⚠ [8965/8968] Replayed Challenge
+  ℹ [8967/8968] Replayed Solution
+  (Replayed = compiled earlier in this session by 4.35.0-rc2 from identical sources; modules
+   without a status line printed no messages: PdtSalemFamily, PdtStarDet, PdtCoxElt,
+   PdtCoxeterBridge, PdtPisotLadder, PdtSalemPlasticPattern, PdtCoxeterSpectral.)
+
+MODULE PORT RECORD (Lean 4.31.0/fabf563a -> 4.35.0-rc2/0653561)
+  v1 modules (from ~/palomar-entries/plastic-number-threshold):
+    PdtSalemFamily      built, byte-identical to v1
+    PdtIrreducible      built after a 2-line repair at l.145 (quartic_irred_zmod2, linear case):
+                        `simp only [eval_add, eval_X, eval_C, neg_add_cancel, zero_mul]` no longer
+                        closes `(-a + a) * eval (-a) r = 0` over ZMod 2 (neither simp nor ring
+                        recognises `-a` as the ring negation on this Mathlib); replaced by
+                        `simp only [eval_add, eval_X, eval_C]` +
+                        `exact mul_eq_zero_of_left (neg_add_cancel a) _`. Statement unchanged.
+    PdtRulerMinpoly     built, byte-identical to v1
+    PdtRulerRecurrence  built, byte-identical to v1
+    PdtRulerCensus      built, byte-identical to v1
+    PdtRulerMeasure     built, byte-identical to v1
+    Challenge           17 v1 statements byte-identical; opening docstring rewritten for the v2
+                        scope; statements (18)-(22) appended
+    Solution            17 v1 proofs byte-identical; (18)-(22) appended
+  Bridge modules (from the 2026-10-15 scratch build, namespaces renamed):
+    PdtStarDet          namespace PlasticThreshold.StarDet; statements unchanged; docstring rewritten
+    PdtCoxElt           namespace PlasticThreshold.CoxElt; statements unchanged; deprecated aliases
+                        if_false -> ite_false, Matrix.det_of_upperTriangular -> det_of_isUpperTriangular
+    PdtCoxeterBridge    namespace PlasticThreshold.CoxeterBridge; scratch statements unchanged;
+                        coxeter_E10_lehmer re-proved through the new lemma lehmer_of_bridge (the
+                        scratch `rw [lehmer_first_rung] at h` + `mul_left_cancel₀` against a
+                        hand-written `(X - 1 : ℤ[X]) ≠ 0` hits "(kernel) deep recursion" on 4.35:
+                        a hand-written ℤ[X] carries Int.instSemiring, Matrix.charpoly's carries
+                        CommSemiring.toSemiring (CommRing.toCommSemiring Int.instCommRing), and the
+                        kernel recurses reconciling the two around literal powers; fixed by keeping
+                        every polynomial in the charpoly instance path); new section of compared
+                        forms: eq_Astar, eval_of_bridge, coxeter_E_bridge_explicit,
+                        coxeter_E10_lehmer_explicit, coxeter_E_plastic_explicit
+    PdtCoxeterSpectral  namespace PlasticThreshold.CoxeterSpectral; scratch statements unchanged
+                        (Bridge.* -> CoxeterBridge.*); new compared forms: evalC_of_bridge,
+                        mem_spectrum_map_iff, spectrum_data_explicit, coxeter_E_spectrum_explicit,
+                        coxeter_E_salem_explicit
+  Salem chain (Step 3):
+    PdtSalemCircle, PdtSalemArith, PdtSalemMinus, PdtPisotLadder, PdtSalemEndgame
+                        built, byte-identical to ~/palomar-entries/salem-theorem (git 887be76,
+                        registered PALOMAR-2026-09-02-000003); no repairs needed
+    PdtPisotBoundary    built, byte-identical to the source project's lean/PdtPisotBoundary.lean
+    PdtSalemPlasticPattern  TRIMMED copy of the source project's lean/PdtSalemInstances.lean:
+                        its lines 63-158 and 255-367 verbatim (pattern_of_simple_root,
+                        Qmap_of_mirror, cubic lemmas, plastic_pattern, plastic_Qmap) plus
+                        PDT.Mahler.rho_real_root_unique copied verbatim from
+                        lean/PdtMahlerWindow.lean; the theta_4, both-sides and ladder sections and
+                        the imports PdtSalemQuadUnit, PdtThetaLadder, PdtMahlerTheta,
+                        PdtMahlerWindow are omitted (unused by the E_m statements)
+
+COMPARED STATEMENTS: 22 (comparator.json); permitted axioms propext, Quot.sound, Classical.choice
+#print axioms (Solution.lean, final build):
+  'PlasticThreshold.plastic_salem_family' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'PlasticThreshold.family_pos_of_rho_le' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'PlasticThreshold.lehmer_first_rung' depends on axioms: [propext, Quot.sound]
+  'PlasticThreshold.lehmer_root_below_plastic' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'PlasticThreshold.ruler_second_conjugate' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'PlasticThreshold.ruler_conjugates_eq_embedding_products' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'PlasticThreshold.ruler_conjugates_card' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'PlasticThreshold.ruler_unit' depends on axioms: [propext, Quot.sound]
+  'PlasticThreshold.rulerPoly_nonreciprocal' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'PlasticThreshold.ruler_degree_multiplicative' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'PlasticThreshold.ruler_linearDisjoint' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'PlasticThreshold.ruler_conjugate_census' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'PlasticThreshold.ruler_house' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'PlasticThreshold.ruler_mahler_measure' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'PlasticThreshold.ruler_mahler_eq_quartic_measure' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'PlasticThreshold.product_recurrence_charpoly' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'PlasticThreshold.product_annihilator_iff' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'PlasticThreshold.coxeter_E_bridge' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'PlasticThreshold.coxeter_E10_lehmer' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'PlasticThreshold.coxeter_E_plastic' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'PlasticThreshold.coxeter_E_spectrum' depends on axioms: [propext, Classical.choice, Quot.sound]
+  'PlasticThreshold.coxeter_E_salem' depends on axioms: [propext, Classical.choice, Quot.sound]
+
+STATEMENT IDENTITY CHECK: a check file (kept outside the package) imports Solution, re-elaborates
+the full Challenge.lean statement block inside `namespace ChallengeCopy`, and compares
+ConstantInfo.type and levelParams of every comparator name with the Solution constant by Expr
+equality. Output: "statement check: 22/22 compared statements elaborate to identical types".
+
+SORRY COUNT (non-comment occurrences): Challenge.lean 22 (one placeholder per compared
+  statement); all other .lean files: 0
+NATIVE_DECIDE COUNT: 0 (all files)
+No `axiom`, `opaque`, `admit`, `implemented_by` or `@[extern]` declarations in any source file.
+
+FILES (sha256  lines  name) — regenerated 2026-10-16 (final, after all mock-referee repairs: docstring, README, yaml; no Lean statement or proof changed; build green 8968 jobs; textual statement check Challenge vs Solution 22/22 identical)
+  222e730cbc434f11ab71e44f5bf74e4a992cbbd6baa83db28c2265c991955692    519  Challenge.lean
+  fe41abbfd713ef6862d35e2756a1e3feb426701540cf1d3fea032bfd2cbfe849    246  PdtCoxElt.lean
+  8465de9805533afa26b967435c3727cd4b1a21946d876ed1dfd0e6c4a7d85981    305  PdtCoxeterBridge.lean
+  82daff084b10136ba06537118571b6084e14f5f3e00eaa00654c88a26564a688    269  PdtCoxeterSpectral.lean
+  cca4ba3b5ca00b90b7a00f10b6d6b52039f167d3f2f327b1de4d460332949a51    219  PdtIrreducible.lean
+  23fece848c5298d95bad080c9247b77205754461aa0dda18e125f9a211c207bb    152  PdtPisotBoundary.lean
+  0d6df49b6de8f144e81105d00815c46278df8fb2d9f8315b9fc267c0e1c2ca6d    479  PdtPisotLadder.lean
+  aa8a6fd3c38d52e938e6df69a67f20727a9e2b8ae2144a4be7a399490ae01e8e    781  PdtRulerCensus.lean
+  ef19876204d57c6409bcff0e3e9a92721865e37cf6e1ed168e025e09847334a9    585  PdtRulerMeasure.lean
+  74d1e1e364e0d936ce21ee38e39cb152162285669cd749d909449c505dfe36b8    631  PdtRulerMinpoly.lean
+  6245b3a9da219797381b66d835b007a2e7e3b3c01531964f9517a0878339ec41    173  PdtRulerRecurrence.lean
+  ed2b2b565ba7db06b19d76aa14488a4a50c8f2334cc7ef728d3d2bd2034ed447    400  PdtSalemArith.lean
+  b4c1455bcf2b5d1a4ec80e5665fc2dfd4064c54f0880d32a82e6740523741213    905  PdtSalemCircle.lean
+  5977ffedf1e3938ced2bb634e181cf50178561450b9457e692e52f4f2116a889    767  PdtSalemEndgame.lean
+  7df82bd9ffb3f90f13ed428581f96e3a5eee1cda468bef735d4db4a598b927a9    619  PdtSalemFamily.lean
+  2a802cdf6e963293ee25d4331953f6596c7abd302f6ffdfa5d14497297c48f9a    695  PdtSalemMinus.lean
+  121a643ba3e906d72ce18afd44fc28036736a92e1eeac03fb04450104c41263b    250  PdtSalemPlasticPattern.lean
+  3121031bbcf5a9b97204589750aba63f07d1be4fe46036380d99717d1cf3f9fd    148  PdtStarDet.lean
+  1e10b9cc21240cd6fb606664b3a92578c4ac6f6407363ba71bc8d2a5f3fb946f    329  Solution.lean
+  b35790c5ded48d275125651564591cd0afe0d306ae42addfab94d61df65feaf9     33  comparator.json
+  30907ce5f7efd86d61c4a10a0bfdee43f7a212dec4cd0a57da8bd0057e576178     64  lakefile.toml
+  14f65cb44e8c50f7690242950c7ccf40d755a547abe556d6e8abb1a5b27a0c0a    117  lake-manifest.json
+  8dc8d6f560141069d9073e370611716ef77ada0da8ffa37e2149f44b2e63ac7a      1  lean-toolchain
+  d32be532ae3b0129081943d5ba0140833d203720b69e21bc64c735160db351cb     21  LICENSE
+  df9739806830e929562d4990da8c07e2b0293a07998767a571eedf65afd55ec5    252  README.md
+  82879ac9868b97a3569e4e60ac39fd7e60fba390b15d76b831ffa91c069221a9   1149  formalization.yaml

@@ -1,7 +1,7 @@
 import Mathlib
 
 /-!
-# The compositum of the two Mahler minimizers, with the Bedford–Kim plastic family
+# The compositum of the two Mahler minimizers, with the Bedford–Kim plastic family and its `E_m` Coxeter bridge
 
 Two polynomials anchor the small-Mahler-measure literature. `x³ − x − 1` has
 real root ρ, the plastic number: Smyth proved that its measure is the
@@ -14,7 +14,11 @@ irreducible integer polynomials at each degree
 `d ∈ {2, 3, 4}` is kernel-certified in the registered entry
 PALOMAR-2026-08-31-000004 (stalex444/mahler-measure-minima): the
 selection of the pair `(ρ, Q)` is the literature's and the registry's,
-not this entry's. The statements below certify the multiplicative
+not this entry's. The entry compares TWENTY-TWO statements: (1)–(4) the
+spectral half (the Bedford–Kim plastic family), (5)–(7) the exclusion
+witness and the embedding-product identification, (8)–(17) the compositum,
+and (18)–(22) the Coxeter bridge, which identifies the spectral half with
+the Coxeter-element spectra of the `E_m` star trees. The compositum statements certify the multiplicative
 compositum of that pair — the degree-12 minimal polynomial of `ρQ`
 ("ruler", in statement names, is the source project's term for the
 product `ρQ`; nothing in any statement depends on it), written out in
@@ -31,9 +35,10 @@ plastic polynomial paired with its (monic) reciprocal — and they prove
 the spectral radii λ_n increase to ρ, the threshold constant of the classification of Blanc–Cantat Thm 1.2 (after Diller–Favre) of birational surface dynamical degrees
 (JAMS 29 (2016)). Statements (1)–(4) are the SPECTRAL half of that
 picture, kernel-checked: canonical largest roots below ρ (largest in
-`[117/100, ρ)`, with `χ_n > 0` on `[ρ, ∞)`; the interval
-`(1, 117/100)` is not swept here — Bedford–Kim's Salem factorization
-places no roots there; cited), strict increase, convergence to ρ, and
+`[117/100, ρ)`, with `χ_n > 0` on `[ρ, ∞)`; statements (1)–(4) alone do not
+sweep `(1, 117/100)`, but the Coxeter bridge does for every `n ≥ 7`: by (18),
+(20) and (21) at `m = n + 3`, the only root of `χ_n` in `(1, ∞)` is
+`lam n`), strict increase, convergence to ρ, and
 the exact factorization `χ₇(x) = (x − 1)·L(x)` with `L` Lehmer's
 degree-10 polynomial (Ann. of Math. 34 (1933)) — so Lehmer's number,
 whose logarithm is the proven minimum positive entropy of a surface
@@ -41,6 +46,39 @@ automorphism (McMullen, Publ. Math. IHES 105 (2007), Thm 1.2), is the
 first member (`n = 7`) of the plastic family. Whether ρ itself is
 ATTAINED as a dynamical degree is open in the literature; nothing here
 claims it.
+
+## The Coxeter bridge: the spectral half IS the `E_m` Coxeter spectrum
+
+Statements (18)–(22) identify the spectral half with the Coxeter-element
+spectra of the star trees `E_m = T(2,3,m−3)`, via the classical `E_n`
+Coxeter-polynomial identity `(x − 1)·E_n(x) = x^(n−2)·(x³ − x − 1) + (x³ + x² − 1)`
+(recorded in B. H. Gross, E. Hironaka, C. T. McMullen, "Cyclotomic factors of
+Coxeter polynomials", J. Number Theory 129 (2009) 1034–1043, §1, and proved
+there as Cor. 4.3 for `n ≥ 4`, citing McKee–Rowlinson–Smyth 1999, Lemma 5),
+kernel-checked for every `m ≥ 4`. For `E_m` with generalized Cartan matrix
+`A` (given entrywise by the hypothesis `hA`) and Coxeter element
+`s_0 s_1 ⋯ s_{m−1}`, each simple reflection written as the matrix
+`s_i = 1 − e_i e_iᵀ A` of the geometric representation in the basis of
+simple roots, statement (18) is the identity
+`(X − 1)·charpoly(s_0 ⋯ s_{m−1}) = X^(m−2)·(X³ − X − 1) + (X³ + X² − 1)`
+for every `m ≥ 4` — the right side is `χ_{m−3}` — proved by a determinant
+recurrence along the long arm together with Howlett's identity
+`U·(s_0 ⋯ s_{m−1}) = U − A` (`U` the unipotent upper part of `A`). Statement
+(19) is the case `m = 10` with the `E_10` Cartan matrix written out: the
+Coxeter polynomial of `E_10` IS Lehmer's polynomial (classical; McMullen,
+Publ. Math. IHES 95 (2002)). Statement (20) composes (18) with (1): for every
+`m ≥ 10` the largest real root `λ_m` of the `E_m` Coxeter polynomial lies in
+`[117/100, ρ)` with no real root above it, `λ_m` strictly increases with `m`,
+and `λ_m → ρ`; `λ_m` is the canonical root `lam (m − 3)` of (1). Statement
+(21) is a localization of the whole complex spectrum for every `m ≥ 10`: an
+eigenvalue `λ ∈ (1, ρ)`, every other eigenvalue unimodular or `λ⁻¹`; statement
+(22) is that this spectral radius is a Salem number for EVERY `m ≥ 10` (for
+hyperbolic crystallographic Coxeter systems: McMullen 2002, Prop. 7.1), with the Salem
+predicate written out as in the registered entry PALOMAR-2026-09-02-000003,
+whose minus-family trichotomy and certificate modules are carried here
+unchanged. The mathematics of (18)–(22) is classical; the contribution
+claimed is the kernel-checked bridge from the Bedford–Kim family of (1)–(4)
+to the Coxeter elements of the `E_m` Weyl groups.
 
 ## The measure, the census, the house, the unit, nonreciprocity
 
@@ -113,11 +151,15 @@ studied by Blanc–Cantat (JAMS 29 (2016)) and Kim (arXiv:2312.17729,
 preprint).
 
 Hypotheses are inline — `ρ`, `Q`, `ψ` enter only through their defining
-equations plus root-selection inequalities — and the statements use
+equations plus root-selection inequalities, and the `E_m` Cartan matrices
+only through their entries (`hA`) — and the statements use
 only core Mathlib vocabulary: `Filter.Tendsto`, `nhds`, the complex
 norm, `minpoly`, `Polynomial.rootSet`, `Set.ncard`,
 `Polynomial.mahlerMeasure`, `IntermediateField` adjoin/sup,
-`Module.finrank`, `Finset.range` sums. No custom definitions.
+`Module.finrank`, `Finset.range` sums, `Matrix.charpoly`,
+`Matrix.diagonal`, `List.finRange`/`List.prod`, `!![…]` matrix literals,
+`Matrix.map`, `Int.castRingHom`, `Polynomial.map`/`eval`, `spectrum`,
+`IsIntegral`, `Polynomial.aeval`. No custom definitions.
 
 Sources (full bibliography with DOIs in `formalization.yaml`):
 C. J. Smyth, "On the product of the conjugates outside the unit circle
@@ -130,7 +172,12 @@ linear fractional recurrences", J. Geom. Anal. 19 (2009); arXiv:
 math/0611297. J. Blanc and S. Cantat, "Dynamical degrees of birational
 transformations of projective surfaces", J. Amer. Math. Soc. 29 (2016)
 415–471. C. T. McMullen, "Dynamics on blowups of the projective plane",
-Publ. Math. IHES 105 (2007) 49–89.
+Publ. Math. IHES 105 (2007) 49–89. B. H. Gross, E. Hironaka and
+C. T. McMullen, "Cyclotomic factors of Coxeter polynomials", J. Number
+Theory 129 (2009) 1034–1043. C. T. McMullen, "Coxeter groups, Salem
+numbers and the Hilbert metric", Publ. Math. IHES 95 (2002) 151–183.
+R. B. Howlett, "Coxeter groups and M-matrices", Bull. London Math. Soc.
+14 (1982) 137–141.
 -/
 
 namespace PlasticThreshold
@@ -342,6 +389,131 @@ theorem product_annihilator_iff {rho Q : ℝ}
         p.coeff k • (rho ^ (n + k) * Q ^ (n + k)) = 0)
       ↔ (X ^ 12 - 3 * X ^ 9 - 2 * X ^ 8 + 2 * X ^ 6 - X ^ 5 - 3 * X ^ 4 - X ^ 3 + X - 1
           : ℚ[X]) ∣ p := by
+  sorry
+
+open Polynomial in
+/-- **(18) The classical `E_m` Coxeter-polynomial identity (Gross–Hironaka–McMullen
+2009, §1 and Cor. 4.3), for every `m ≥ 4`.**  Let `A` be the generalized Cartan matrix of the star
+tree `E_m = T(2,3,m−3)` (`2` on the diagonal, `−1` on the edges, `0`
+elsewhere), with nodes `0, …, m−5` on the long arm, center `m−4`, `m−3` the
+arm of one edge and `m−2, m−1` the arm of two edges.  The Coxeter element is
+the ordered product `s_0 s_1 ⋯ s_{m−1}` of the simple reflections
+`s_i = 1 − e_i e_iᵀ A` (the geometric representation in the basis of simple
+roots: `s_i α_j = α_j − A_{ij} α_i`).  Then
+`(X − 1)·charpoly(s_0 ⋯ s_{m−1}) = X^(m−2)·(X³ − X − 1) + (X³ + X² − 1)`,
+which is `χ_{m−3}`, the Bedford–Kim member of statements (1)–(4). -/
+theorem coxeter_E_bridge (m : ℕ) (hm : 4 ≤ m) (A : Matrix (Fin m) (Fin m) ℤ)
+    (hA : ∀ a b : Fin m, A a b =
+      if (a : ℕ) = b then 2
+      else if (((b : ℕ) = a + 1 ∧ (b : ℕ) ≤ m - 4) ∨ ((a : ℕ) = m - 4 ∧ (b : ℕ) = m - 3) ∨
+            ((a : ℕ) = m - 4 ∧ (b : ℕ) = m - 2) ∨ ((a : ℕ) = m - 2 ∧ (b : ℕ) = m - 1)) ∨
+          (((a : ℕ) = b + 1 ∧ (a : ℕ) ≤ m - 4) ∨ ((b : ℕ) = m - 4 ∧ (a : ℕ) = m - 3) ∨
+            ((b : ℕ) = m - 4 ∧ (a : ℕ) = m - 2) ∨ ((b : ℕ) = m - 2 ∧ (a : ℕ) = m - 1))
+        then -1 else 0) :
+    (X - 1) * Matrix.charpoly ((List.finRange m).map (fun i =>
+        1 - Matrix.diagonal (fun b => if b = i then 1 else 0) * A)).prod
+      = X ^ (m - 2) * (X ^ 3 - X - 1) + (X ^ 3 + X ^ 2 - 1) := by
+  sorry
+
+open Polynomial in
+/-- **(19) The Coxeter polynomial of `E_10` is Lehmer's polynomial.**  With
+the Cartan matrix of `E_10 = T(2,3,7)` written out (the node ordering of
+(18) at `m = 10`), the characteristic polynomial of the Coxeter element
+`s_0 s_1 ⋯ s_9` is Lehmer's degree-10 polynomial of statements (3)–(4). -/
+theorem coxeter_E10_lehmer (A : Matrix (Fin 10) (Fin 10) ℤ)
+    (hA : A = !![ 2, -1,  0,  0,  0,  0,  0,  0,  0,  0;
+                 -1,  2, -1,  0,  0,  0,  0,  0,  0,  0;
+                  0, -1,  2, -1,  0,  0,  0,  0,  0,  0;
+                  0,  0, -1,  2, -1,  0,  0,  0,  0,  0;
+                  0,  0,  0, -1,  2, -1,  0,  0,  0,  0;
+                  0,  0,  0,  0, -1,  2, -1,  0,  0,  0;
+                  0,  0,  0,  0,  0, -1,  2, -1, -1,  0;
+                  0,  0,  0,  0,  0,  0, -1,  2,  0,  0;
+                  0,  0,  0,  0,  0,  0, -1,  0,  2, -1;
+                  0,  0,  0,  0,  0,  0,  0,  0, -1,  2]) :
+    Matrix.charpoly ((List.finRange 10).map (fun i =>
+        1 - Matrix.diagonal (fun b => if b = i then 1 else 0) * A)).prod
+      = X ^ 10 + X ^ 9 - X ^ 7 - X ^ 6 - X ^ 5 - X ^ 4 - X ^ 3 + X + 1 := by
+  sorry
+
+/-- **(20) The leading real eigenvalues of the `E_m` Coxeter elements
+increase to the plastic number.**  For the family of `E_m` Cartan matrices
+of (18) there is `λ : ℕ → ℝ` such that for every `m ≥ 10`, `λ_m ∈ [117/100, ρ)`
+is a root of the characteristic polynomial of the Coxeter element of `E_m`
+and no real number above `λ_m` is a root; `λ_m` is strictly increasing in `m`
+and tends to ρ, the real root of `x³ = x + 1`.  (By (18), `λ_m` and the
+canonical root `lam (m − 3)` of statement (1) are both the largest real root of
+`χ_{m−3}`, hence equal.) -/
+theorem coxeter_E_plastic (rho : ℝ) (hrho : rho ^ 3 = rho + 1)
+    (A : (m : ℕ) → Matrix (Fin m) (Fin m) ℤ)
+    (hA : ∀ (m : ℕ) (a b : Fin m), A m a b =
+      if (a : ℕ) = b then 2
+      else if (((b : ℕ) = a + 1 ∧ (b : ℕ) ≤ m - 4) ∨ ((a : ℕ) = m - 4 ∧ (b : ℕ) = m - 3) ∨
+            ((a : ℕ) = m - 4 ∧ (b : ℕ) = m - 2) ∨ ((a : ℕ) = m - 2 ∧ (b : ℕ) = m - 1)) ∨
+          (((a : ℕ) = b + 1 ∧ (a : ℕ) ≤ m - 4) ∨ ((b : ℕ) = m - 4 ∧ (a : ℕ) = m - 3) ∨
+            ((b : ℕ) = m - 4 ∧ (a : ℕ) = m - 2) ∨ ((b : ℕ) = m - 2 ∧ (a : ℕ) = m - 1))
+        then -1 else 0) :
+    ∃ lam : ℕ → ℝ,
+      (∀ m, 10 ≤ m →
+        ((117 / 100 : ℝ) ≤ lam m ∧ lam m < rho) ∧
+        ((Matrix.charpoly ((List.finRange m).map (fun i =>
+            1 - Matrix.diagonal (fun b => if b = i then 1 else 0) * A m)).prod).map
+              (Int.castRingHom ℝ)).eval (lam m) = 0 ∧
+        ∀ y : ℝ, lam m < y →
+          ((Matrix.charpoly ((List.finRange m).map (fun i =>
+            1 - Matrix.diagonal (fun b => if b = i then 1 else 0) * A m)).prod).map
+              (Int.castRingHom ℝ)).eval y ≠ 0) ∧
+      (∀ m, 10 ≤ m → lam m < lam (m + 1)) ∧
+      Filter.Tendsto lam Filter.atTop (nhds rho) := by
+  sorry
+
+/-- **(21) The spectrum of the `E_m` Coxeter element, for every `m ≥ 10`.**
+For the `E_m` Cartan matrix of (18), the complexified Coxeter element
+`s_0 s_1 ⋯ s_{m−1}` has an eigenvalue `λ ∈ (1, ρ)`, and every complex
+eigenvalue is unimodular, `λ`, or `λ⁻¹`; so `λ` is the spectral radius; with
+(20), `λ = λ_m`. -/
+theorem coxeter_E_spectrum (rho : ℝ) (hrho : rho ^ 3 = rho + 1)
+    (m : ℕ) (hm : 10 ≤ m) (A : Matrix (Fin m) (Fin m) ℤ)
+    (hA : ∀ a b : Fin m, A a b =
+      if (a : ℕ) = b then 2
+      else if (((b : ℕ) = a + 1 ∧ (b : ℕ) ≤ m - 4) ∨ ((a : ℕ) = m - 4 ∧ (b : ℕ) = m - 3) ∨
+            ((a : ℕ) = m - 4 ∧ (b : ℕ) = m - 2) ∨ ((a : ℕ) = m - 2 ∧ (b : ℕ) = m - 1)) ∨
+          (((a : ℕ) = b + 1 ∧ (a : ℕ) ≤ m - 4) ∨ ((b : ℕ) = m - 4 ∧ (a : ℕ) = m - 3) ∨
+            ((b : ℕ) = m - 4 ∧ (a : ℕ) = m - 2) ∨ ((b : ℕ) = m - 2 ∧ (a : ℕ) = m - 1))
+        then -1 else 0) :
+    ∃ lam : ℝ, 1 < lam ∧ lam < rho ∧
+      (lam : ℂ) ∈ spectrum ℂ (((List.finRange m).map (fun i =>
+          1 - Matrix.diagonal (fun b => if b = i then 1 else 0) * A)).prod.map (Int.castRingHom ℂ)) ∧
+      ∀ z ∈ spectrum ℂ (((List.finRange m).map (fun i =>
+          1 - Matrix.diagonal (fun b => if b = i then 1 else 0) * A)).prod.map (Int.castRingHom ℂ)),
+        ‖z‖ = 1 ∨ z = (lam : ℂ) ∨ z = (lam : ℂ)⁻¹ := by
+  sorry
+
+/-- **(22) The spectral radius of the `E_m` Coxeter element is a Salem
+number, for EVERY `m ≥ 10`.**  There is an eigenvalue `λ ∈ (1, ρ)` of the
+complexified Coxeter element of `E_m` dominating the modulus of every
+eigenvalue, and `λ` is a Salem number in the sense of the registered entry
+PALOMAR-2026-09-02-000003: an algebraic integer `> 1` whose other conjugates
+lie in the closed unit disk, at least one of them ON the unit circle, with
+`λ⁻¹` a conjugate. -/
+theorem coxeter_E_salem (rho : ℝ) (hrho : rho ^ 3 = rho + 1)
+    (m : ℕ) (hm : 10 ≤ m) (A : Matrix (Fin m) (Fin m) ℤ)
+    (hA : ∀ a b : Fin m, A a b =
+      if (a : ℕ) = b then 2
+      else if (((b : ℕ) = a + 1 ∧ (b : ℕ) ≤ m - 4) ∨ ((a : ℕ) = m - 4 ∧ (b : ℕ) = m - 3) ∨
+            ((a : ℕ) = m - 4 ∧ (b : ℕ) = m - 2) ∨ ((a : ℕ) = m - 2 ∧ (b : ℕ) = m - 1)) ∨
+          (((a : ℕ) = b + 1 ∧ (a : ℕ) ≤ m - 4) ∨ ((b : ℕ) = m - 4 ∧ (a : ℕ) = m - 3) ∨
+            ((b : ℕ) = m - 4 ∧ (a : ℕ) = m - 2) ∨ ((b : ℕ) = m - 2 ∧ (a : ℕ) = m - 1))
+        then -1 else 0) :
+    ∃ lam : ℝ, 1 < lam ∧ lam < rho ∧
+      (lam : ℂ) ∈ spectrum ℂ (((List.finRange m).map (fun i =>
+          1 - Matrix.diagonal (fun b => if b = i then 1 else 0) * A)).prod.map (Int.castRingHom ℂ)) ∧
+      (∀ z ∈ spectrum ℂ (((List.finRange m).map (fun i =>
+          1 - Matrix.diagonal (fun b => if b = i then 1 else 0) * A)).prod.map (Int.castRingHom ℂ)), ‖z‖ ≤ lam) ∧
+      IsIntegral ℤ lam ∧
+      (∀ z : ℂ, (Polynomial.aeval z) (minpoly ℚ lam) = 0 → z ≠ (lam : ℂ) → ‖z‖ ≤ 1) ∧
+      (∃ z : ℂ, (Polynomial.aeval z) (minpoly ℚ lam) = 0 ∧ ‖z‖ = 1) ∧
+      (Polynomial.aeval ((lam : ℂ))⁻¹) (minpoly ℚ lam) = 0 := by
   sorry
 
 end PlasticThreshold

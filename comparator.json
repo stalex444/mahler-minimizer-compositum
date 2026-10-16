@@ -18,7 +18,12 @@
     "PlasticThreshold.ruler_mahler_measure",
     "PlasticThreshold.ruler_mahler_eq_quartic_measure",
     "PlasticThreshold.product_recurrence_charpoly",
-    "PlasticThreshold.product_annihilator_iff"
+    "PlasticThreshold.product_annihilator_iff",
+    "PlasticThreshold.coxeter_E_bridge",
+    "PlasticThreshold.coxeter_E10_lehmer",
+    "PlasticThreshold.coxeter_E_plastic",
+    "PlasticThreshold.coxeter_E_spectrum",
+    "PlasticThreshold.coxeter_E_salem"
   ],
   "permitted_axioms": [
     "propext",
