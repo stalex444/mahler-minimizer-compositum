@@ -1,5 +1,7 @@
-import Mathlib
+module
+public import Mathlib
 
+@[expose] public section
 /-!
 # The compositum of the two Mahler minimizers, with the Bedford–Kim plastic family and its `E_m` Coxeter bridge
 

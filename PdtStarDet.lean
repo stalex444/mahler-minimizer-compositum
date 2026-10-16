@@ -1,5 +1,7 @@
-import Mathlib
+module
+public import Mathlib
 
+@[expose] public section
 /-!
 # The star-tree determinant `det(x·U + Uᵀ)` for `E_m = T(2,3,m-3)`
 

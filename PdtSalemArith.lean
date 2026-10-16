@@ -1,6 +1,8 @@
-import Mathlib
-import PdtSalemCircle
+module
+public import Mathlib
+public import PdtSalemCircle
 
+@[expose] public section
 /-!
 # PdtSalemArith — the arithmetic Salem-ness certificate
 

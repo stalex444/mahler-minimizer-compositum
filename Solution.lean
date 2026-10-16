@@ -1,3 +1,13 @@
+module
+public import PdtSalemFamily
+public import PdtRulerMinpoly
+public import PdtRulerCensus
+public import PdtRulerMeasure
+public import PdtRulerRecurrence
+public import PdtCoxeterBridge
+public import PdtCoxeterSpectral
+
+@[expose] public section
 /-
 Solution: proofs of the challenge statements, transferred from the
 PdtIrreducible / PdtSalemFamily / PdtRulerMinpoly / PdtRulerCensus /
@@ -6,13 +16,6 @@ PdtCoxeterBridge / PdtCoxeterSpectral developments (the latter over the
 PdtSalemCircle / PdtSalemArith / PdtSalemMinus / PdtPisotLadder /
 PdtSalemEndgame / PdtPisotBoundary / PdtSalemPlasticPattern chain).
 -/
-import PdtSalemFamily
-import PdtRulerMinpoly
-import PdtRulerCensus
-import PdtRulerMeasure
-import PdtRulerRecurrence
-import PdtCoxeterBridge
-import PdtCoxeterSpectral
 
 open Polynomial IntermediateField
 

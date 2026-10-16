@@ -1,7 +1,9 @@
-import Mathlib
-import PdtIrreducible
-import PdtSalemFamily
+module
+public import Mathlib
+public import PdtIrreducible
+public import PdtSalemFamily
 
+@[expose] public section
 /-!
 # PdtRulerMinpoly — the minimal polynomial of the ruler product `ρQ`
 

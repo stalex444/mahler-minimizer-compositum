@@ -1,5 +1,7 @@
-import PdtRulerMinpoly
+module
+public import PdtRulerMinpoly
 
+@[expose] public section
 /-!
 # PdtRulerCensus — the unit-circle census of the conjugates of `ρQ`
 

@@ -1,5 +1,7 @@
-import Mathlib
+module
+public import Mathlib
 
+@[expose] public section
 /-!
 # The Coxeter element of a generalized Cartan matrix
 

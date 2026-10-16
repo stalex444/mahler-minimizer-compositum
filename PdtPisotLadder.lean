@@ -1,5 +1,7 @@
-import Mathlib
+module
+public import Mathlib
 
+@[expose] public section
 /-!
 # PdtPisotLadder — the general Pisot ladder
 

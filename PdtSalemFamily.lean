@@ -1,5 +1,7 @@
-import Mathlib
+module
+public import Mathlib
 
+@[expose] public section
 /-!
 # PdtSalemFamily — the plastic number as a spectral threshold
 

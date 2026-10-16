@@ -1,5 +1,7 @@
-import Mathlib
+module
+public import Mathlib
 
+@[expose] public section
 /-!
 # PdtPisotBoundary — the Pisot dichotomy of the two defining polynomials (ρ Pisot, Q non-Pisot)
 

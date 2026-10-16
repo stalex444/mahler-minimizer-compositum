@@ -1,5 +1,7 @@
-import PdtRulerCensus
+module
+public import PdtRulerCensus
 
+@[expose] public section
 /-!
 # PdtRulerMeasure — the Mahler measure of the ruler minimal polynomial
 

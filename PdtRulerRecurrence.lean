@@ -1,5 +1,7 @@
-import PdtRulerMinpoly
+module
+public import PdtRulerMinpoly
 
+@[expose] public section
 /-!
 # PdtRulerRecurrence — the order-12 product recurrence of `rulerPoly`
 

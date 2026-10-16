@@ -1,9 +1,11 @@
-import Mathlib
-import PdtSalemCircle
-import PdtSalemArith
-import PdtSalemFamily
-import PdtPisotBoundary
+module
+public import Mathlib
+public import PdtSalemCircle
+public import PdtSalemArith
+public import PdtSalemFamily
+public import PdtPisotBoundary
 
+@[expose] public section
 /-!
 # PdtSalemPlasticPattern — the plastic Pisot-pattern data (trimmed instance module)
 

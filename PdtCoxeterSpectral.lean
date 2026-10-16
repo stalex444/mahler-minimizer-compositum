@@ -1,9 +1,11 @@
-import Mathlib
-import PdtCoxeterBridge
-import PdtSalemPlasticPattern
-import PdtSalemMinus
-import PdtSalemEndgame
+module
+public import Mathlib
+public import PdtCoxeterBridge
+public import PdtSalemPlasticPattern
+public import PdtSalemMinus
+public import PdtSalemEndgame
 
+@[expose] public section
 /-!
 # The spectrum of the `E_m` Coxeter elements, and Salem-ness of their radii
 

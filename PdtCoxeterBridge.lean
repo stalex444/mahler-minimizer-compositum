@@ -1,8 +1,10 @@
-import Mathlib
-import PdtStarDet
-import PdtCoxElt
-import PdtSalemFamily
+module
+public import Mathlib
+public import PdtStarDet
+public import PdtCoxElt
+public import PdtSalemFamily
 
+@[expose] public section
 /-!
 # The `E_m` Coxeter bridge to the Bedford–Kim / plastic family
 

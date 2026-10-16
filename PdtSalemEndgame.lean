@@ -1,9 +1,11 @@
-import Mathlib
-import PdtPisotLadder
-import PdtSalemCircle
-import PdtSalemArith
-import PdtSalemMinus
+module
+public import Mathlib
+public import PdtPisotLadder
+public import PdtSalemCircle
+public import PdtSalemArith
+public import PdtSalemMinus
 
+@[expose] public section
 /-!
 # PdtSalemEndgame — the two-sided assembly
 

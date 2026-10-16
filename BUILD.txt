@@ -120,26 +120,26 @@ SORRY COUNT (non-comment occurrences): Challenge.lean 22 (one placeholder per co
 NATIVE_DECIDE COUNT: 0 (all files)
 No `axiom`, `opaque`, `admit`, `implemented_by` or `@[extern]` declarations in any source file.
 
-FILES (sha256  lines  name) — regenerated 2026-10-16 (final, after all mock-referee repairs: docstring, README, yaml; no Lean statement or proof changed; build green 8968 jobs; textual statement check Challenge vs Solution 22/22 identical)
-  222e730cbc434f11ab71e44f5bf74e4a992cbbd6baa83db28c2265c991955692    519  Challenge.lean
-  fe41abbfd713ef6862d35e2756a1e3feb426701540cf1d3fea032bfd2cbfe849    246  PdtCoxElt.lean
-  8465de9805533afa26b967435c3727cd4b1a21946d876ed1dfd0e6c4a7d85981    305  PdtCoxeterBridge.lean
-  82daff084b10136ba06537118571b6084e14f5f3e00eaa00654c88a26564a688    269  PdtCoxeterSpectral.lean
-  cca4ba3b5ca00b90b7a00f10b6d6b52039f167d3f2f327b1de4d460332949a51    219  PdtIrreducible.lean
-  23fece848c5298d95bad080c9247b77205754461aa0dda18e125f9a211c207bb    152  PdtPisotBoundary.lean
-  0d6df49b6de8f144e81105d00815c46278df8fb2d9f8315b9fc267c0e1c2ca6d    479  PdtPisotLadder.lean
-  aa8a6fd3c38d52e938e6df69a67f20727a9e2b8ae2144a4be7a399490ae01e8e    781  PdtRulerCensus.lean
-  ef19876204d57c6409bcff0e3e9a92721865e37cf6e1ed168e025e09847334a9    585  PdtRulerMeasure.lean
-  74d1e1e364e0d936ce21ee38e39cb152162285669cd749d909449c505dfe36b8    631  PdtRulerMinpoly.lean
-  6245b3a9da219797381b66d835b007a2e7e3b3c01531964f9517a0878339ec41    173  PdtRulerRecurrence.lean
-  ed2b2b565ba7db06b19d76aa14488a4a50c8f2334cc7ef728d3d2bd2034ed447    400  PdtSalemArith.lean
-  b4c1455bcf2b5d1a4ec80e5665fc2dfd4064c54f0880d32a82e6740523741213    905  PdtSalemCircle.lean
-  5977ffedf1e3938ced2bb634e181cf50178561450b9457e692e52f4f2116a889    767  PdtSalemEndgame.lean
-  7df82bd9ffb3f90f13ed428581f96e3a5eee1cda468bef735d4db4a598b927a9    619  PdtSalemFamily.lean
-  2a802cdf6e963293ee25d4331953f6596c7abd302f6ffdfa5d14497297c48f9a    695  PdtSalemMinus.lean
-  121a643ba3e906d72ce18afd44fc28036736a92e1eeac03fb04450104c41263b    250  PdtSalemPlasticPattern.lean
-  3121031bbcf5a9b97204589750aba63f07d1be4fe46036380d99717d1cf3f9fd    148  PdtStarDet.lean
-  1e10b9cc21240cd6fb606664b3a92578c4ac6f6407363ba71bc8d2a5f3fb946f    329  Solution.lean
+FILES (sha256  lines  name) — regenerated 2026-10-16 (final: module-system headers `module` / `public import` / `@[expose] public section` added to every .lean for the registry's source rule, after preflight run #1 on 23b17f3 failed on exactly that rule; build green; #print axioms standard for all 22 compared names; Challenge vs Solution statements identical 22/22; 22 sorry in Challenge only; no native_decide)
+  eb6ba5d2c62ec139bda60df4942098e8c620e544c00ecb9f79a6dd248faf6893    521  Challenge.lean
+  f5d55defaa0c63d30a09f3be25c5f66421f5da17a421e4b5753a17dc52603f23    248  PdtCoxElt.lean
+  57d0f95b10062261b933b98f2c40d6dadee1672ba8321e727104cde90f17bcdb    307  PdtCoxeterBridge.lean
+  c33921f620e369196fd083d1e24409a81941fb65c47bedb1cd1e3174b946b98d    271  PdtCoxeterSpectral.lean
+  806b281ce038dccf07fb7602e5352a2581af1f6b077621a7de8bd6c8bad54423    221  PdtIrreducible.lean
+  114cd38680235823481453a449f104c724777d535f60a0867c888ee25086ad98    154  PdtPisotBoundary.lean
+  afb253a660e5f9fdd177beb5e38eaba134c35fdad280f120523313c829897053    481  PdtPisotLadder.lean
+  aa6e937fdfc2637d8a95a6aeb38ba3b9c2a2815f2c848092a0af54c90ec17c99    783  PdtRulerCensus.lean
+  01c5d92495397927ed696bbce6b1832aee49a88e740c4a3df1400f80defcb749    587  PdtRulerMeasure.lean
+  6d68205291c0e1ef9b1f0163208d119e924e9b7d5e988ab766afcc96c07c3ed5    633  PdtRulerMinpoly.lean
+  b4904efd7f39b1902dc2b35380cb109ecef2d874de99746f45b4bf51ca8c5a19    175  PdtRulerRecurrence.lean
+  d050b49db1d036f565183282b2ce597c787f5fbbd246346caa82a2b9191a6b15    402  PdtSalemArith.lean
+  fc551a1d72f3639f3640b3ae81fb79b1db5f70a32e63e6ecf9cb752a97a5da90    907  PdtSalemCircle.lean
+  225b80d166f0ed0032b5c8431b6495ee50e2c5f4b977981197e957578b8bd212    769  PdtSalemEndgame.lean
+  faaffd9e9d0a608bbe715ae6c6e5afbf98c72efe1f94fea6a2490e4d31e2d3f9    621  PdtSalemFamily.lean
+  1658894aff5c7c7fc8ca3997420d387b3e5df34bc9828bb800e4989dc59b5542    697  PdtSalemMinus.lean
+  14fe11b324b1b8ed9daf475ca193e7424e2130e48efe7936bc635e2072fc6a3c    252  PdtSalemPlasticPattern.lean
+  ee08e5fcfc498eb8f022427e1ba1f4f0fd051d81c06f9ec975279a2cc6001e6a    150  PdtStarDet.lean
+  f5f19f2e47c46384497d9db275bb862f8eb6e70674e8cca6b152ef19bb1ee4c9    332  Solution.lean
   b35790c5ded48d275125651564591cd0afe0d306ae42addfab94d61df65feaf9     33  comparator.json
   30907ce5f7efd86d61c4a10a0bfdee43f7a212dec4cd0a57da8bd0057e576178     64  lakefile.toml
   14f65cb44e8c50f7690242950c7ccf40d755a547abe556d6e8abb1a5b27a0c0a    117  lake-manifest.json

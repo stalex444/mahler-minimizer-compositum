@@ -1,7 +1,9 @@
-import Mathlib
-import PdtSalemCircle
-import PdtSalemArith
+module
+public import Mathlib
+public import PdtSalemCircle
+public import PdtSalemArith
 
+@[expose] public section
 /-!
 # PdtSalemMinus — the minus family
 
